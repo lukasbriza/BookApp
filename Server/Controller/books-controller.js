@@ -27,7 +27,13 @@ router.get('/all', (req, res) =>{
 router.get('/findId/:id', (req, res) =>{
     findBook(req, res, '_id', req.params.id);
 })
+
 router.get('/findName/:name', (req, res) =>{
     findBook(req, res, 'name', req.params.name);
 })
+
+router.get('/findAuthor/:author', (req, res) =>{
+    findBook(req, res, 'author', req.params.author);
+})
+////////////////////////////////////////////////////////////////
 module.exports = router;
