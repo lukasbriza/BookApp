@@ -1,13 +1,16 @@
 //DEPENDENCIES//
 const mongoose = require('mongoose');
-const {bookSchemaDB, Book} = require("../Schemas/mongooseSchema");
+const {Book} = require("../Schemas/mongooseSchema");
 ////////////////////////////////////////////////////////////////
 //FUNCTIONS//
 async function showAllBooks(req, res){
-    Book.find((err, books) => {
+    //wait for
+    await Book.find((err, result) => {
         if (err){return console.error(err);} //error handle
-        //wait for
-        await res.send(books);
+        if (result.length == 0){
+            return res.send("V databázi nejsou žádné zaznamenané knihy!");
+        }
+        res.send(result);
     })
 }
 

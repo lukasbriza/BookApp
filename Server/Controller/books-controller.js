@@ -16,11 +16,15 @@ router.post('/add', (req, res) => {
 });
 
 router.post('/remove/:id', (req, res) =>{
-    bookRemove(req, res);
+    bookRemove(req, res, req.params.id);
 })
 
 router.get('/all', (req, res) =>{
     showAllBooks(req, res);
+})
+
+router.get('/find/:id', (req, res) =>{
+    findBook(req, res, req.params.id);
 })
 
 module.exports = router;

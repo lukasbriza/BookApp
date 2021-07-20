@@ -1,7 +1,7 @@
 //DEPENDENCIES//
 const Ajv = require("ajv").default; 
 const mongoose = require('mongoose');
-const {bookSchemaDB, Book} = require("../Schemas/mongooseSchema");
+const {Book} = require("../Schemas/mongooseSchema");
 ////////////////////////////////////////////////////////////////
 //FUNCTIONS//
 async function bookAdd(req, res, schema){
@@ -14,14 +14,14 @@ async function bookAdd(req, res, schema){
             author: req.body.author,
             description: req.body.description
         })
-        newBook.save((err)=>{
+        await newBook.save((err)=>{
             if(err){return handleError(err);}
             //wait for
-            await res.send('Uloženo do databáze!');
+            res.send("Kniha vložena. Její _id je: " + newBook._id);
         });
     }
     if(!valid){
-        return res.status(400).json({error: ajv.errors});
+        return await res.status(400).json({error: ajv.errors});
     }
 }
 
