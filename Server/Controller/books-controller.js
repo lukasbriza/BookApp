@@ -6,6 +6,7 @@ const router =express.Router();
 const {bookAdd} = require('../Abl/bookAdd-Abl');
 const {bookRemove} = require('../Abl/bookRemove-Abl');
 const {showAllBooks} = require('../Abl/showAllBooks-Abl');
+const {findBook} = require('../Abl/bookFind-Abl');
 ////////////////////////////////////////////////////////////////
 //SCHEMA TEMPLATE - import//
 const bookSchema = require("../Schemas/book-schema");
@@ -23,8 +24,10 @@ router.get('/all', (req, res) =>{
     showAllBooks(req, res);
 })
 
-router.get('/find/:id', (req, res) =>{
-    findBook(req, res, req.params.id);
+router.get('/findId/:id', (req, res) =>{
+    findBook(req, res, '_id', req.params.id);
 })
-
+router.get('/findName/:name', (req, res) =>{
+    findBook(req, res, 'name', req.params.name);
+})
 module.exports = router;

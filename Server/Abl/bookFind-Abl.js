@@ -3,11 +3,22 @@ const mongoose = require('mongoose');
 const {Book} = require("../Schemas/mongooseSchema");
 ////////////////////////////////////////////////////////////////
 //FUNCTIONS//
-async function findBook(req, res, id){
-    await Book.findById(id,(err, result) => {
-        if (err) {return res.send(err)}
-        res.send(result);
-    })
+async function findBook(req, res, paramName, paramValue){
+    //search by _id
+    if(paramName == '_id'){
+        await Book.find({_id: paramValue},(err, result) => {
+            if (err) {return res.send(err)}
+            return res.send(result);
+        })
+    }
+    //search by name
+    if(paramName == 'name'){
+        await Book.find({name: paramValue},(err, result) => {
+            if (err) {return res.send(err)}
+            return res.send(result);
+        })
+    }
+    res.send("Něco se nezdařilo: funkce findBook.");
 }
 
 module.exports = {
