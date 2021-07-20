@@ -18,14 +18,14 @@ async function findBook(req, res, paramName, paramValue){
             return res.send(result);
         })
     }
-    //search by author - bude array o více vísledcích
+    //search by author - bude array o více
     if(paramName == 'author'){
         await Book.find({author: paramValue},(err, result) => {
             if (err) {return res.send(err)}
             return res.send(result);
         })
     }
-    res.send("Něco se nezdařilo: funkce findBook().");
+    res.send("Něco se nezdařilo: funkce findBook.");
 }
 
 module.exports = {
