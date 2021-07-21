@@ -1,5 +1,6 @@
 const express = require('express');
 const json = require('express').json();
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -8,6 +9,7 @@ const PORT = 3000;
 //MIDDLEWARE//
 app.use(json);
 app.use(express.urlencoded({ extended:true}));
+app.use("/public/", express.static(path.join(__dirname, "public"))); //zpřístupnění složky public přes url 
 ////////////////////////////////////////////////////////////////
 //ROUTE-CONTROLL//
 const bookRoute = require('./Controller/books-controller');

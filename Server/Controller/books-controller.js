@@ -7,6 +7,7 @@ const {bookAdd} = require('../Abl/bookAdd-Abl');
 const {bookRemove} = require('../Abl/bookRemove-Abl');
 const {showAllBooks} = require('../Abl/showAllBooks-Abl');
 const {findBook} = require('../Abl/bookFind-Abl');
+const {bookUpdate} = require('../Abl/bookUpdate-Abl');
 ////////////////////////////////////////////////////////////////
 //SCHEMA TEMPLATE - import//
 const bookSchema = require("../Schemas/book-schema");
@@ -18,6 +19,10 @@ router.post('/add', (req, res) => {
 
 router.post('/remove/:id', (req, res) =>{
     bookRemove(req, res, req.params.id);
+})
+
+router.post('/update', (req, res)=>{
+    bookUpdate(req, res, req.query);
 })
 
 router.get('/all', (req, res) =>{
@@ -35,5 +40,6 @@ router.get('/findName/:name', (req, res) =>{
 router.get('/findAuthor/:author', (req, res) =>{
     findBook(req, res, 'author', req.params.author);
 })
+
 ////////////////////////////////////////////////////////////////
 module.exports = router;
