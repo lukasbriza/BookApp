@@ -1,24 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Book from './components/book/book';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Book id={"test"} name={"Book name"} author={"Author name"} description={"some description"}/>
     </div>
   );
 }
