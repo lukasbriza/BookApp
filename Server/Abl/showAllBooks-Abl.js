@@ -10,7 +10,7 @@ async function showAllBooks(req, res){
         if (result.length == 0){
             return res.send("V databázi nejsou žádné zaznamenané knihy!");
         }
-        res.send(result);
+        res.json(result);
     })
 }
 
