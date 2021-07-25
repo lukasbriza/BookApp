@@ -1,10 +1,11 @@
 const express = require('express');
 const json = require('express').json();
 const path = require('path');
-const cors = require('cors'); // povolí CORS policy pro http requesty z frontendu
+const cors = require('cors'); // povolí CORS policy pro http requ
+const settings = require('./Public/settings');
 
 const app = express();
-const PORT = 3000;
+const PORT = settings.serverPort;
 
 ////////////////////////////////////////////////////////////////
 //MIDDLEWARE//

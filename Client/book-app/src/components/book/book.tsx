@@ -5,15 +5,13 @@ type bookProps = {
     id: string,
     name: string,
     author: string,
-    description: string
+    description?: string
 }
 
-class Book extends React.Component<bookProps> {
-    
-    
+class Book extends React.Component<bookProps> {  
     render() { 
         return(
-            <li className="bookLi" id={this.props.id} data-description={this.props.description}>
+            <li className="BookLi" key={this.props.id} data-description={this.props.description}>
                 <div className="bookName">Name: {this.props.name}</div>
                 <div className="bookAuthor">Author: {this.props.author}</div>
             </li>
@@ -21,4 +19,4 @@ class Book extends React.Component<bookProps> {
     }
 }
 
-export default Book;
+export {Book};
