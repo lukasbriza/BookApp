@@ -15,7 +15,20 @@ function getAll(url: string){
 }
 function getByID(){}
 function getByName(){}
-function removeByID(){}
+function removeByID(url: string){
+    let options = {
+        method: "POST",
+    }
+    return fetch(url , options)
+            .then((response) => {
+                if(response.ok){
+                    return response.json();
+                } else {
+                    const error = new Error("ERROR: response removeByID failed.");
+                    return error;
+                }
+            })
+}
 function addBook(){}
 
 
