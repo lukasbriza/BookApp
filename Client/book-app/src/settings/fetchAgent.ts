@@ -22,10 +22,11 @@ function removeByID(url: string){
     return fetch(url , options)
             .then((response) => {
                 if(response.ok){
-                    return response.json();
+                    console.log("Vymazáno");
+                    return console.log(response);
                 } else {
                     const error = new Error("ERROR: response removeByID failed.");
-                    return error;
+                    return console.log(error);
                 }
             })
 }

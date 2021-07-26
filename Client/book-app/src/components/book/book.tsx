@@ -1,4 +1,6 @@
 import React from "react";
+import settings from "../../settings/settings";
+import {removeByID} from "../../settings/fetchAgent";
 
 type bookProps = {
     id: string,
@@ -16,10 +18,12 @@ class Book extends React.Component<bookProps> {
     }
     
     removeBook(state:any){
-        console.log(state);
-
         let comp = document.getElementById(state.id);
         console.log(comp);
+        console.log(state.id);
+        let url = settings.serverUrl + "/book/remove/" + state.id;
+        console.log('URL je:', url);
+        removeByID(url);
     }
     render() { 
         return(

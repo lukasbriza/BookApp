@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import {BookList} from './components/bookList/BookList';
 import BookListMenu from './components/bookListMenu/BookListMenu';
 
