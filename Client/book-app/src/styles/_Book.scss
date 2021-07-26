@@ -32,12 +32,20 @@
             box-shadow: 1px 1px black;
             position: relative;
 
-            img{
-               position: absolute;
-               top:50%;
-               left: 50%;
-               transform: translate(-50%,-50%); 
-               height: 70%;
+            .layer{
+                @include wh100p;
+                z-index: 800;
+                background: transparent;
+                position: relative;
+
+                img{
+                    position: absolute;
+                    top:50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%); 
+                    height: 70%;
+                    
+                 }
             }
         }
         .button_remove:hover , .button_edit:hover{
