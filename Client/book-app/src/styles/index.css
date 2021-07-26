@@ -1,4 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap");
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.App .bookAppWrapper {
+  width: 90%;
+  height: 90%;
+  min-height: 500px;
+  position: relative;
+  left: 50%;
+  top: 50px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: #dfdfdf;
+  border-radius: 25px;
+  border-color: #4d4d4d;
+  border-width: 1px;
+  border-style: solid;
+}
+
 .BookLi {
-  border: solid black 2px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 200px 1fr 100px;
+      grid-template-columns: 200px 1fr 100px;
+  padding: 0px 10px;
+  background: rgba(240, 240, 240, 0.884);
+  -webkit-box-shadow: 0px 0px 10px 2px #bbbbbb inset;
+          box-shadow: 0px 0px 10px 2px #bbbbbb inset;
+  border: 1px solid #a3a3a3;
+}
+
+.BookLi .bookName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.BookLi .bookAuthor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.BookLi .controlArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.BookLi .controlArea .button_remove, .BookLi .controlArea .button_edit {
+  cursor: pointer;
+  height: 80%;
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 25px;
+  margin: 0px 5px;
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+  position: relative;
+}
+
+.BookLi .controlArea .button_remove img, .BookLi .controlArea .button_edit img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 70%;
+}
+
+.BookLi .controlArea .button_remove:hover, .BookLi .controlArea .button_edit:hover {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.BookLi .controlArea .button_remove:active, .BookLi .controlArea .button_edit:active {
+  background-color: #e7e7e7;
+  -webkit-box-shadow: 0px 0px black;
+          box-shadow: 0px 0px black;
+}
+
+.BookList_section {
+  width: 100%;
+  padding: 0px;
+  list-style: none;
+}
+
+.BookListMenu {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 80px;
+      grid-template-rows: 80px;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  background: #e2e2e2;
+  border-radius: 25px 25px 0px 0px;
+  border: 2px solid #7a7a7a;
+  -webkit-box-shadow: inset 7px -4px 41px 7px rgba(0, 0, 0, 0.28);
+          box-shadow: inset 7px -4px 41px 7px rgba(0, 0, 0, 0.28);
+  position: relative;
+}
+
+.BookListMenu .logoWrapper {
+  height: 100%;
+}
+
+.BookListMenu .logoWrapper .Logo {
+  height: 100%;
+  width: 50px;
+  margin-left: 20px;
+}
+
+.BookListMenu .finderWrapper {
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.BookListMenu .finderWrapper .textInput {
+  border: 1px solid rgba(16, 17, 19, 0.212);
+  -webkit-box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+          box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  border-radius: 6px 0px 0px 6px;
+  padding-left: 10px;
+  font-size: 18px;
+  width: 150px;
+}
+
+.BookListMenu .finderWrapper #options {
+  cursor: pointer;
+  border: 1px solid rgba(16, 17, 19, 0.212);
+  border-radius: 0px 6px 6px 0px;
+  width: 50px;
+}
+
+.BookListMenu .finderWrapper .submitButton {
+  width: 80px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(16, 17, 19, 0.212);
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+          box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  color: #24292E;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  word-wrap: break-word;
+}
+
+.BookListMenu .finderWrapper .submitButton:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+}
+
+.BookListMenu .finderWrapper .submitButton:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.BookListMenu .finderWrapper .submitButton:active {
+  background-color: #EDEFF2;
+  -webkit-box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+          box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  -webkit-transition: none 0s;
+  transition: none 0s;
+}
+
+.BookListMenu .finderWrapper .submitButton:focus {
+  outline: 1px transparent;
+}
+
+.BookListMenu .finderWrapper .submitButton:before {
+  display: none;
+}
+
+.BookListMenu .finderWrapper .submitButton:-webkit-details-marker {
+  display: none;
+}
+
+* {
+  margin: 0px;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Teko', sans-serif;
+  font-size: 18px;
+}
+
+#root {
+  margin: 0px;
+  outline: none;
+  width: 100vw;
+  height: 100vh;
 }
 /*# sourceMappingURL=index.css.map */

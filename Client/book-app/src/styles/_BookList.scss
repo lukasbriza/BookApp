@@ -1,0 +1,7 @@
+@import "./mixins";
+
+.BookList_section{
+    @include w100p;
+    padding: 0px;
+    list-style: none;
+}

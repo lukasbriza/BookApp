@@ -33,15 +33,14 @@ class BookList extends React.Component {
         }
         //////////////////////////////////////////////
         return(
-            <section>
+            <Fragment>
                 <ul className="BookList_section">
                     {result}
                 </ul>
-            </section>
+            </Fragment>
         )
     }
 }
-
 
 export {BookList};
 

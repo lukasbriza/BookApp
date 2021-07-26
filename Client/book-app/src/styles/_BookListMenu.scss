@@ -1,0 +1,98 @@
+@import "./mixins";
+
+.BookListMenu{
+    @include w100p;
+
+    display:grid;
+    grid-template-rows: 80px;
+    grid-template-columns: 50% 50%;
+    
+    background: rgb(226, 226, 226);
+    border-radius: 25px 25px 0px 0px;
+    border: 2px solid rgb(122, 122, 122);
+    box-shadow: inset 7px -4px 41px 7px rgba(0,0,0,0.28);
+
+    position: relative;
+    .logoWrapper{
+        @include h100p;
+        .Logo{
+            @include h100p;
+            width: 50px;
+            margin-left: 20px;
+        }
+    }
+    .finderWrapper{
+        @include h50p;
+        display: flex;
+        flex-wrap: nowrap;
+        
+        position:absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+
+        .textInput{
+            border: 1px solid rgba(16, 17, 19, 0.212);
+            box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+            border-radius: 6px 0px 0px 6px;
+            padding-left: 10px;
+            font-size: 18px;
+            width: 150px;
+        }
+        #options{
+            cursor: pointer;
+            border: 1px solid rgba(16, 17, 19, 0.212);
+            border-radius: 0px 6px 6px 0px;
+            width: 50px;
+        }
+        .submitButton{
+            width: 80px;
+            margin-left: 10px;
+            cursor: pointer;
+
+            background-color: #FAFBFC;
+            border: 1px solid rgba(16, 17, 19, 0.212);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+            color: #24292E;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+            user-select: none;
+            word-wrap: break-word;
+        }
+
+        .submitButton:hover {
+            background-color: #F3F4F6;
+            text-decoration: none;
+            transition-duration: 0.1s;
+        }
+
+        .submitButton:disabled {
+            background-color: #FAFBFC;
+            border-color: rgba(27, 31, 35, 0.15);
+            color: #959DA5;
+            cursor: default;
+        }
+
+        .submitButton:active {
+            background-color: #EDEFF2;
+            box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+            transition: none 0s;
+        }
+
+        .submitButton:focus {
+            outline: 1px transparent;
+        }
+
+        .submitButton:before {
+            display: none;
+        }
+
+        .submitButton:-webkit-details-marker {
+            display: none;
+        }
+        
+    }
+}
