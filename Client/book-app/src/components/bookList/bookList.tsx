@@ -1,43 +1,42 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {Book} from "../book/Book";
-import settings from "../../settings/settings";
-import { getAll } from "../../settings/fetchAgent";
 
-const url:string = settings.serverUrl+"/book/all";
-
-type book = {
-    _id: any,
-    name: string,
-    author: string,
-    description?: string
-}
+//////////////////
+//CONTEXT IMPORT//
+import {bookContext} from '../../settings/bookContext';
+//////////////////
 class BookList extends React.Component {
-    state= {
-        books: [],
-    }
-
-    async componentDidMount(){
-        let data = await getAll(url);
-        this.setState({books: data})
-    }
-
+    
     render() {
-        let result;
-        if(this.state.books !==[]){
-            console.log(this.state.books);
-            result = this.state.books.map((book:book)=>(
-                <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
-            ))
-        } else {
-            result = "Loading...";
-        }
-        //////////////////////////////////////////////
+        let result:any;
+        let components:any;
         return(
-            <Fragment>
-                <ul className="BookList_section">
-                    {result}
-                </ul>
-            </Fragment>
+            <bookContext.Consumer>
+                {(context) => {
+                    //////////////////////////////////////////////
+                    //BL
+                    if(context.refreshed==true){
+                        result = context.booksToShow;
+                        components = result.map((book:bookType) => { 
+                            return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
+                        });
+                        return(
+                            <ul className="BookList_section">
+                                    {components}
+                            </ul>
+                        );
+                    } else {
+                        return(
+                            <ul className="BookList_section">
+                                    <div>Loading...</div>
+                            </ul>
+                        );
+                    }
+                    
+                    //////////////////////////////////////////////
+                    }
+                }
+            </bookContext.Consumer>
         )
     }
 }

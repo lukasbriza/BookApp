@@ -13,8 +13,21 @@ function getAll(url: string){
                 return bookList;
             })
 }
-function getByID(){}
-function getByName(){}
+function getBook(url: string){
+    return fetch(url)
+            .then((response) => {
+                if(response.ok){
+                    return response.json();
+                } else {
+                    const error = new Error("ERROR: response getBook failed.");
+                    console.log(error);
+                    console.log(response);
+                }
+            })
+            .then(book => {
+                return book;
+            })
+}
 function removeByID(url: string){
     let options = {
         method: "POST",
@@ -36,8 +49,7 @@ function addBook(){}
 
 export {
     getAll,
-    getByID,
-    getByName,
+    getBook,
     removeByID,
     addBook
 };

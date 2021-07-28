@@ -8,24 +8,25 @@ async function findBook(req, res, paramName, paramValue){
     if(paramName == '_id'){
         await Book.find({_id: paramValue},(err, result) => {
             if (err) {return res.send(err)}
-            return res.send(result);
+            return res.json(result);
         })
     }
     //search by name
-    if(paramName == 'name'){
+    else if(paramName == 'name'){
         await Book.find({name: paramValue},(err, result) => {
             if (err) {return res.send(err)}
-            return res.send(result + " " + Book._id);
+            return res.json(result);
         })
     }
     //search by author - bude array o více
-    if(paramName == 'author'){
+    else if(paramName == 'author'){
         await Book.find({author: paramValue},(err, result) => {
             if (err) {return res.send(err)}
-            return res.send(result + " " + Book._id);
+            return res.json(result);
         })
+    } else {
+    res.status(500).json({error: "Něco se nezdařilo: funkce findBook."});
     }
-    res.send("Něco se nezdařilo: funkce findBook.");
 }
 
 module.exports = {
