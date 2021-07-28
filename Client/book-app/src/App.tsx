@@ -22,6 +22,7 @@ class App extends React.Component {
     //main state here
     this.state = {
       refreshed: false,
+      showRefresher: false,
       booksToShow: null,
 
       //provided functions here

@@ -1,0 +1,32 @@
+@import "./mixins";
+
+.refreshSection{
+    @include w100p;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+
+    .refreshText{
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .refreshButton{
+        width: 100px;
+        height: 35px;
+        border-radius: 25px;
+
+        cursor: pointer;
+        border: 1px solid gray;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 1px 1px black;
+    }
+    .refreshButton:hover{
+        background-color: rgb(255, 255, 255);
+        box-shadow: 1px 1px black;
+
+    }
+    .refreshButton:active{
+        background-color: rgb(231, 231, 231);
+        box-shadow: 0px 0px black;
+    }
+}

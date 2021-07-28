@@ -1,6 +1,7 @@
 import React from "react";
 import {Book} from "../book/Book";
-
+import { Fragment } from "react";
+import RefreshSection from "./RefreshSection";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
@@ -20,12 +21,24 @@ class BookList extends React.Component {
                         components = result.map((book:bookType) => { 
                             return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
                         });
-                        return(
-                            <ul className="BookList_section">
-                                    {components}
-                            </ul>
-                        );
-                    } else {
+                        if(context.showRefresher==true){
+                            return(
+                                <Fragment>
+                                    <ul className="BookList_section">
+                                        {components}
+                                    </ul>
+                                    <RefreshSection/>
+                                </Fragment>  
+                            )
+
+                        }else if(context.showRefresher==false){
+                            return(  
+                                    <ul className="BookList_section">
+                                        {components}
+                                    </ul>
+                            )
+                        }
+                    }else{
                         return(
                             <ul className="BookList_section">
                                     <div>Loading...</div>

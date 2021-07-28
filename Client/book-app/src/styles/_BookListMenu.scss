@@ -5,7 +5,7 @@
 
     display:grid;
     grid-template-rows: 80px;
-    grid-template-columns: 50% 50%;
+    //grid-template-columns: 50% 50%;
     
     background: rgb(226, 226, 226);
     border-radius: 25px 25px 0px 0px;
@@ -41,9 +41,9 @@
         }
         #options{
             cursor: pointer;
+            width: 60px;
             border: 1px solid rgba(16, 17, 19, 0.212);
             border-radius: 0px 6px 6px 0px;
-            width: 50px;
         }
         .submitButton{
             width: 80px;
