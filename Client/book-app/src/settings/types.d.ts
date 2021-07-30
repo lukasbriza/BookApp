@@ -15,3 +15,10 @@ type bookProps = {
 type id = string;
 
 type findBookProps = string | undefined;
+
+interface bookOverviewProps {
+    id: string | number,
+    name: string,
+    author: string,
+    description: string
+}

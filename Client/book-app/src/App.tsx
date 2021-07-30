@@ -1,6 +1,7 @@
 
-import React, {Component}from 'react';
+import React from 'react';
 import {BookList} from './components/bookList/BookList';
+import {Home} from './components/homePage/Home';
 import BookListMenu from './components/bookListMenu/BookListMenu';
 import { getAll, removeByID, getBook} from "./settings/fetchAgent";
 import settings from "./settings/settings";
@@ -24,16 +25,25 @@ class App extends React.Component {
     this.getAllBooks = this.getAllBooks.bind(this);
     this.removeBook = this.removeBook.bind(this);
     this.findBook = this.findBook.bind(this);
+    this.bookOverview = this.bookOverview.bind(this);
     //main state here
     this.state = {
       refreshed: false,
       showRefresher: false,
       booksToShow: null,
 
+      //temporary data
+      showBook: {
+          id:null,
+          name:null,
+          author: null,
+          description: null
+      },
       //provided functions here
       actualiseBooks: this.getAllBooks,
       removeBook: this.removeBook,
       findBook: this.findBook,
+      showOverview: this.bookOverview,
     }
   }
   ///////////////////////////////////////////////////
@@ -138,16 +148,35 @@ class App extends React.Component {
           alert("Zadána neplatná volba.");
     }
   }
+
+  bookOverview(propsObj:bookOverviewProps){
+    console.log(propsObj.id, propsObj.name, propsObj.author, propsObj.description);
+    this.setState(()=>{
+      return {
+        showBook: {
+          id: propsObj.id,
+          name: propsObj.name,
+          author: propsObj.author,
+          description: propsObj.description
+        }}
+    });
+
+  }
   //////////////////////////////////////////////////
   render() {
     return (
       <Router>
         <bookContext.Provider value={this.state}>
           <div className="App">
-            <section className="bookAppWrapper">
-              <BookListMenu/>
-              <BookList/>
-            </section>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/bookApp">
+                <section className="bookAppWrapper">
+                  <BookListMenu/>
+                  <BookList/>
+                </section>
+              </Route>
+            </Switch>
           </div>
         </bookContext.Provider>
       </Router>
