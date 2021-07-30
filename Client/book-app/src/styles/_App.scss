@@ -2,15 +2,27 @@
 
 .App{
 
+    //min-max
+    min-height: 700px;
+    min-width: 600px;
+    padding-bottom: 50px;
+    
     @include wh100;
     .bookAppWrapper{
-        width: 90%;
-        height: 90%;
-        min-height: 500px;
+        width: 80%;
+        //min-max
+        min-width: 534px;
+        max-width: 1000px;
+        /////////
+        height: 80%;
+        //min-max
+        min-height: 600px;
+        /////////
 
-        position:relative;
+        position: relative;
         left: 50%;
         top: 50px;
+        
         transform: translateX(-50%);
 
         background: rgb(223, 223, 223);
@@ -18,5 +30,7 @@
         border-color:rgb(77, 77, 77);
         border-width: 1px;
         border-style: solid;
+
+        overflow-x: hidden;
     }
 }
