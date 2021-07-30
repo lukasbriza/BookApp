@@ -24,6 +24,7 @@
         .button_remove , .button_edit , .button_show{
             cursor: pointer;
             height: 80%;
+            max-height: 18px;
             border-radius: 5px;
             border: 1px solid gray;
             width: 25px;
@@ -43,7 +44,9 @@
                     top:50%;
                     left: 50%;
                     transform: translate(-50%,-50%); 
-                    height: 90%;
+                    height: 95%;
+                    width: 23px;
+
                 }
 
                 img{
