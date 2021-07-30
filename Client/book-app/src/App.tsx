@@ -4,7 +4,12 @@ import {BookList} from './components/bookList/BookList';
 import BookListMenu from './components/bookListMenu/BookListMenu';
 import { getAll, removeByID, getBook} from "./settings/fetchAgent";
 import settings from "./settings/settings";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from './settings/bookContext';
@@ -50,7 +55,7 @@ class App extends React.Component {
     let data = await getAll(url);
     
     this.setState(()=>{
-      return {booksToShow: data}
+      return {booksToShow: data, showRefresher: false}
     });
 
     console.log("APP: getAllBooks() sucess.");
@@ -70,63 +75,82 @@ class App extends React.Component {
     
     switch (option) {
       case "Id":
-        //find by id
-        const urlID:findBookProps = settings.serverUrl+"/book/findId/"+value;  
-        data = await getBook(urlID);
+          //find by id
+          const urlID:findBookProps = settings.serverUrl+"/book/findId/"+value;  
+          data = await getBook(urlID)
 
-        await this.setState(()=>{
-          return {booksToShow: data}
-        });
-        //no return value case
-        if(data===[]){
-          alert("Nebyla nalezena žádná kniha. Zkuste znovu.");
-          this.getAllBooks();
-        }
-        break;
+          //error handle
+          if(data.Error=="ERROR"){
+            console.log("error");
+            alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
+          } else {
+
+          //result
+            await this.setState(()=>{
+              return {booksToShow: data,
+                      showRefresher: true}
+            }) 
+            console.log("APP: findBook() sucess.");
+          }
+          break;
     
       case "Name":
-        //find by name
-        const urlName:findBookProps = settings.serverUrl+"/book/findName/"+value;
-        data = await getBook(urlName);
+          //find by name
+          const urlName:findBookProps = settings.serverUrl+"/book/findName/"+value;
+          data = await getBook(urlName);
 
-        await this.setState(()=>{
-          return {booksToShow: data}
-        });
-        //no return value case
-        if(data===[]){
-          alert("Nebyla nalezena žádná kniha. Zkuste znovu.");
-          this.getAllBooks();
-        }
-        break;
+          //error handle
+          if(data.Error=="ERROR"){
+            console.log("error");
+            alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
+          } else {
+            
+          //result
+            await this.setState(()=>{
+              return {booksToShow: data,
+                showRefresher: true}
+            }) 
+            console.log("APP: findBook() sucess.");
+          }
+          break;
+
       case "Author":
-        //find by author
-        const urlAuthor:findBookProps = settings.serverUrl+"/book/findAuthor/"+value;
-        data = await getBook(urlAuthor);
+          //find by author
+          const urlAuthor:findBookProps = settings.serverUrl+"/book/findAuthor/"+value;
+          data = await getBook(urlAuthor);
 
-        await this.setState(()=>{
-          return {booksToShow: data}
-        });
-        //no return value case
-        if(data===[]){
-          alert("Nebyla nalezena žádná kniha. Zkuste znovu.");
-          this.getAllBooks();
-        }
-        break;
+          //error handle
+          if(data.Error=="ERROR"){
+            console.log("error");
+            alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
+          } else {
+            
+          //result
+            await this.setState(()=>{
+              return {booksToShow: data,
+                showRefresher: true}
+            }) 
+            console.log("APP: findBook() sucess.");
+          }
+          break;
+
       default:
-        alert("Zadána neplatná volba.");
+          alert("Zadána neplatná volba.");
     }
   }
   //////////////////////////////////////////////////
   render() {
     return (
-      <bookContext.Provider value={this.state}>
-        <div className="App">
-          <section className="bookAppWrapper">
-            <BookListMenu/>
-            <BookList/>
-          </section>
-        </div>
-      </bookContext.Provider>
+      <Router>
+        <bookContext.Provider value={this.state}>
+          <div className="App">
+            <section className="bookAppWrapper">
+              <BookListMenu/>
+              <BookList/>
+            </section>
+          </div>
+        </bookContext.Provider>
+      </Router>
     );
   }
 }

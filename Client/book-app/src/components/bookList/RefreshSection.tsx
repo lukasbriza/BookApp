@@ -15,7 +15,7 @@ class RefreshSection extends React.Component{
                         return(
                             <section className="refreshSection">
                                 <p className="refreshText">▲ Výsledek hledání ▲</p>
-                                <button className="refreshButton">Refresh</button>
+                                <button className="refreshButton" onClick={()=>{context.actualiseBooks()}}>Refresh</button>
                             </section>
                         )
                     }
