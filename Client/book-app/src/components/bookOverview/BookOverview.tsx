@@ -1,4 +1,4 @@
-import React , {Fragment} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 //////////////////
 //CONTEXT IMPORT//
@@ -40,7 +40,6 @@ class BookOverview extends React.Component<bookOverviewProps,bookOverviewState>{
 
     render() {
         return (
-            <Fragment>
                 <section className="bookOverview_wrapper">
                     <div className="nameWrapper">
                         <div className="bookName">{this.state.name}</div>
@@ -48,14 +47,13 @@ class BookOverview extends React.Component<bookOverviewProps,bookOverviewState>{
                     </div>
                     <div className="authorName">{this.state.author}</div>
                     <div className="bookDescription">
-                        <h5 className="descriptionHeader">Description</h5>
+                        <h5 className="descriptionHeader" >Description</h5>
                         <p className="descriptiontext">{this.state.description}</p>    
                     </div>
                     <Link className="button_back" to="/bookApp">
                         <p>Back</p>
                     </Link>
                 </section>
-            </Fragment>
         )
     }
 }

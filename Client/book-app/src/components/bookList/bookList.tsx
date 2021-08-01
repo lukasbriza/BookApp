@@ -2,11 +2,12 @@ import React from "react";
 import {Book} from "../book/Book";
 import { Fragment } from "react";
 import RefreshSection from "./RefreshSection";
+import { Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import { BookOverview } from "../bookOverview/BookOverview";
+import { BookEditSection } from "../bookEditSection/BookEditSection";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
-import { Switch, Route, Link, BrowserRouter as Router} from "react-router-dom";
-import { BookOverview } from "../bookOverview/BookOverview";
 //////////////////
 class BookList extends React.Component {
     
@@ -16,8 +17,9 @@ class BookList extends React.Component {
         return(
             <Router>
                 <Switch>
-                    <Route exact path="/bookOverview" component={BookOverview}/>
-                    <Route path="/bookApp">
+                    <Route path="/bookApp/bookOverview" component={BookOverview}/>
+                    <Route path="/bookApp/bookEdit" component={BookEditSection}/>
+                    <Route exact path="/bookApp">
                         <bookContext.Consumer>
                             {(context) => {
                                 //////////////////////////////////////////////

@@ -26,6 +26,9 @@ class App extends React.Component {
     this.removeBook = this.removeBook.bind(this);
     this.findBook = this.findBook.bind(this);
     this.bookOverview = this.bookOverview.bind(this);
+    this.showEditPage = this.showEditPage.bind(this);
+    this.bookEdit = this.bookEdit.bind(this);
+
     //main state here
     this.state = {
       refreshed: false,
@@ -39,11 +42,22 @@ class App extends React.Component {
           author: null,
           description: null
       },
+
+      editableBook:{
+          editable: true,
+          id: null,
+          name: null,
+          author: null,
+          description: null
+      },
+
       //provided functions here
       actualiseBooks: this.getAllBooks,
       removeBook: this.removeBook,
       findBook: this.findBook,
       showOverview: this.bookOverview,
+      showEditPage: this.showEditPage,
+      editBook: this.bookEdit,
     }
   }
   ///////////////////////////////////////////////////
@@ -160,7 +174,29 @@ class App extends React.Component {
           description: propsObj.description
         }}
     });
+  }
 
+  showEditPage(id:string | number,name:string,author:string,description:string | null){
+    console.log(id,name,author,description);
+    this.setState(()=>{
+      return {
+        editableBook:{
+          editable: true,
+          id: id,
+          name: name,
+          author: author,
+          description: description,
+        }
+      }
+    })
+  }
+
+  bookEdit(){
+    //získat editované záznamy
+    //poslat update na server
+    //získat editované záznamy zpět
+    //ukázat editovanou knihu v editSection
+    //dát možnost editovat
   }
   //////////////////////////////////////////////////
   render() {

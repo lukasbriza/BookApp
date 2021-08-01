@@ -377,6 +377,127 @@
           box-shadow: 0px 0px black;
 }
 
+.background-white {
+  background: white;
+}
+
+.background-transparent {
+  background: transparent;
+}
+
+.bookEdit_wrapper {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 60px 30px 1fr 50px;
+      grid-template-rows: 60px 30px 1fr 50px;
+  background-color: #f8ead9;
+  width: 100%;
+  height: calc(100% - 86px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.bookEdit_wrapper .headerWrapper {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  padding: 0px 20px;
+}
+
+.bookEdit_wrapper .headerWrapper .editNameWrapper {
+  margin-top: auto;
+  margin-bottom: 3px;
+}
+
+.bookEdit_wrapper .headerWrapper .editNameWrapper .editName {
+  margin-top: auto;
+  line-height: 35px;
+  font-size: 35px;
+  border-radius: 5px;
+  padding: 2px 15px;
+}
+
+.bookEdit_wrapper .headerWrapper #edit_underliner {
+  height: 2px;
+  width: 60px;
+  background: black;
+  border-radius: 40%;
+  margin-bottom: auto;
+}
+
+.bookEdit_wrapper .editAuthorWrapper {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  padding: 0px 20px;
+}
+
+.bookEdit_wrapper .editAuthorWrapper .editAuthor {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: auto;
+  border-radius: 5px;
+  padding: 2px 15px;
+}
+
+.bookEdit_wrapper .editDescriptionWrapper {
+  display: block;
+  position: relative;
+  justify-items: center;
+  padding: 0px 20px;
+  padding-bottom: 20px;
+}
+
+.bookEdit_wrapper .editDescriptionWrapper .descriptionHeader {
+  margin-top: 30px;
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.bookEdit_wrapper .editDescriptionWrapper .editDescription {
+  font-style: italic;
+  font-size: 17px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.bookEdit_wrapper .buttonSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bookEdit_wrapper .buttonSection .button_back_edit, .bookEdit_wrapper .buttonSection .confirm_edit {
+  position: relative;
+  width: 100px;
+  height: 35px;
+  border-radius: 25px;
+  margin: 0px 10px;
+  cursor: pointer;
+  border: 1px solid gray;
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.bookEdit_wrapper .buttonSection .button_back_edit p, .bookEdit_wrapper .buttonSection .confirm_edit p {
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  left: 50%;
+  top: 55%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 * {
   margin: 0px;
   outline: none;

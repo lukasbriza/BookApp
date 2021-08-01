@@ -1,0 +1,111 @@
+@import "./mixins";
+
+
+.background-white{
+    background: white;
+}
+.background-transparent{
+    background: transparent
+}
+
+.bookEdit_wrapper{
+    position : absolute;
+    display: grid;
+    grid-template-rows: 60px 30px 1fr 50px;
+    background-color: rgb(248, 234, 217);
+
+    @include w100p;
+    height: calc(100% - 86px);
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    .headerWrapper{
+        display: grid;
+        justify-items: center;
+        padding: 0px 20px;
+        
+        .editNameWrapper{
+            margin-top: auto;
+            margin-bottom: 3px;
+
+            .editName{
+                margin-top: auto;
+                line-height:35px;
+                font-size: 35px;
+                border-radius: 5px;
+                padding: 2px 15px;
+            }
+        }
+        #edit_underliner{
+            height: 2px;
+            width: 60px;
+            background: black;
+            border-radius: 40%;
+            margin-bottom: auto;
+        }
+        
+    }
+    .editAuthorWrapper{
+        display: grid;
+        justify-items: center;
+        padding: 0px 20px;
+
+        .editAuthor{
+            text-align: center;
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom:auto;
+            border-radius: 5px;
+            padding: 2px 15px;
+        }
+    }
+
+    .editDescriptionWrapper{
+        display: block;
+        position: relative;
+        justify-items: center;
+        padding: 0px 20px;
+        padding-bottom: 20px;
+
+        .descriptionHeader{
+            margin-top: 30px;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        .editDescription{
+            font-style: italic;
+            font-size: 17px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    }
+
+    .buttonSection{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        .button_back_edit, .confirm_edit{
+            position: relative;
+            width: 100px;
+            height: 35px;
+            border-radius: 25px;
+            margin: 0px 10px;
+            cursor: pointer;
+            border: 1px solid gray;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 1px 1px black;
+
+            p{
+                position: absolute;
+                text-decoration: none;
+                color: black;
+    
+                left: 50%;
+                top: 55%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}

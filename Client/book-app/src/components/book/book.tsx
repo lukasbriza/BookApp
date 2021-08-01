@@ -29,16 +29,16 @@ class Book extends React.Component<bookProps> {
                                 <div className="bookName"><h2>Name</h2>: &nbsp;&nbsp;&nbsp;{this.props.name}</div>
                                 <div className="bookAuthor"><h2>Author</h2>: &nbsp;&nbsp;&nbsp;{this.props.author}</div>
                                 <div className="controlArea">
-                                    <Link className="button_show" to="/bookOverview" onClick={()=>{context.showOverview({id: this.props.id ,name: this.props.name, author: this.props.author, description: this.props.description})}}>
+                                    <Link className="button_show" to="/bookApp/bookOverview" onClick={()=>{context.showOverview({id: this.props.id ,name: this.props.name, author: this.props.author, description: this.props.description})}}>
                                         <div className="layer">
                                             <SearchIcon />
                                         </div>
                                     </Link>
-                                    <div className="button_edit" >
+                                    <Link className="button_edit" to="/bookApp/bookEdit" onClick={()=>{context.showEditPage(this.props.id, this.props.name, this.props.author,this.props.description)}}>
                                         <div className="layer">
                                             <EditIcon /> 
                                         </div>
-                                    </div>
+                                    </Link>
                                     <div className="button_remove">
                                         <div className="layer" onClick={()=>{context.removeBook(this.props.id)}}>
                                             <RemoveIcon />
