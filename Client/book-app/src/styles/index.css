@@ -277,6 +277,76 @@
           box-shadow: 0px 0px black;
 }
 
+.bookOverview_wrapper {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 60px 30px 1fr 50px;
+      grid-template-rows: 60px 30px 1fr 50px;
+  width: 100%;
+  height: calc(100% - 90px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.bookOverview_wrapper .nameWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 5px;
+      grid-template-rows: 1fr 5px;
+  position: relative;
+  justify-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bookOverview_wrapper .nameWrapper .bookName {
+  text-align: center;
+  line-height: 30px;
+  font-size: 35px;
+  margin-top: auto;
+}
+
+.bookOverview_wrapper .nameWrapper .underliner {
+  height: 2px;
+  width: 65%;
+  background: black;
+  border-radius: 40%;
+}
+
+.bookOverview_wrapper .authorName {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: auto;
+}
+
+.bookOverview_wrapper .bookDescription {
+  padding: 20px 15px;
+}
+
+.bookOverview_wrapper .bookDescription .descriptionHeader {
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.bookOverview_wrapper .bookDescription .descriptiontext {
+  font-style: italic;
+  font-size: 17px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.bookOverview_wrapper .button_back {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: right;
+      justify-self: right;
+}
+
 * {
   margin: 0px;
   outline: none;

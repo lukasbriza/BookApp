@@ -1,0 +1,55 @@
+@import "./mixins";
+
+.bookOverview_wrapper{
+    position : absolute;
+    display: grid;
+    grid-template-rows: 60px 30px 1fr 50px;
+
+    @include w100p;
+    height: calc(100% - 90px);
+
+    left: 50%;
+    transform: translateX(-50%);
+    .nameWrapper{
+        display: grid;
+        grid-template-rows: 1fr 5px;
+        position: relative;
+        justify-items:center;
+        justify-content: center;
+        .bookName{
+            text-align: center;
+            line-height:30px;
+            font-size: 35px;
+            margin-top:auto;
+        }
+        .underliner{
+            height: 2px;
+            width: 65%;
+            background: black;
+            border-radius: 40%;
+        }
+    }
+    .authorName{
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom:auto;
+    }
+    .bookDescription{
+        padding: 20px 15px;
+        .descriptionHeader{
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        .descriptiontext{
+            font-style: italic;
+            font-size: 17px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+    .button_back{
+        align-self: center;
+        justify-self: right;
+    }
+}
