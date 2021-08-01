@@ -20,5 +20,12 @@ interface bookOverviewProps {
     id: string | number,
     name: string,
     author: string,
-    description: string
+    description?: string
+}
+
+interface bookOverviewState {
+    id: string | number |null,
+    name: string |null,
+    author: string |null,
+    description?: string | null
 }

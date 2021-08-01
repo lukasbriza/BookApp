@@ -15,50 +15,50 @@ class BookList extends React.Component {
         let components:any;
         return(
             <Router>
-            <Switch>
-                <Route path="/bookOverview" component={BookOverview}/>
-                <Route path="/bookApp">
-                    <bookContext.Consumer>
-                        {(context) => {
-                            //////////////////////////////////////////////
-                            //BL
-                            if(context.refreshed==true){
-                                result = context.booksToShow;
-                                components = result.map((book:bookType) => { 
-                                    return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
-                                });
-                                if(context.showRefresher==true){
-                                    return(
-                                        <Fragment>
-                                            <ul className="BookList_section">
-                                                {components}
-                                            </ul>
-                                            <RefreshSection/>
-                                        </Fragment> 
-                                    )
+                <Switch>
+                    <Route exact path="/bookOverview" component={BookOverview}/>
+                    <Route path="/bookApp">
+                        <bookContext.Consumer>
+                            {(context) => {
+                                //////////////////////////////////////////////
+                                //BL
+                                if(context.refreshed==true){
+                                    result = context.booksToShow;
+                                    components = result.map((book:bookType) => { 
+                                        return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
+                                    });
+                                    if(context.showRefresher===true){
+                                        return(
+                                            <Fragment>
+                                                <ul className="BookList_section">
+                                                    {components}
+                                                </ul>
+                                                <RefreshSection/>
+                                            </Fragment> 
+                                        )
 
-                                }else if(context.showRefresher==false){
-                                    return(  
-                                        <Fragment>
-                                            <ul className="BookList_section">
-                                                {components}
-                                            </ul>
-                                        </Fragment>
-                                    )
+                                    }else if(context.showRefresher===false){
+                                        return(  
+                                            <Fragment>
+                                                <ul className="BookList_section">
+                                                    {components}
+                                                </ul>
+                                            </Fragment>
+                                        )
+                                    }
+                                }else{
+                                    return(
+                                        <ul className="BookList_section">
+                                                <div>Loading...</div>
+                                        </ul>
+                                    );
                                 }
-                            }else{
-                                return(
-                                    <ul className="BookList_section">
-                                            <div>Loading...</div>
-                                    </ul>
-                                );
+                                //////////////////////////////////////////////
+                                }
                             }
-                            //////////////////////////////////////////////
-                            }
-                        }
-                    </bookContext.Consumer>
-                </Route>
-            </Switch>
+                        </bookContext.Consumer>
+                    </Route>
+                </Switch>
             </Router>
         )
     }

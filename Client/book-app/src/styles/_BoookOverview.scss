@@ -4,9 +4,10 @@
     position : absolute;
     display: grid;
     grid-template-rows: 60px 30px 1fr 50px;
+    background-color: rgb(248, 234, 217);
 
     @include w100p;
-    height: calc(100% - 90px);
+    height: calc(100% - 84px);
 
     left: 50%;
     transform: translateX(-50%);
@@ -49,7 +50,36 @@
         }
     }
     .button_back{
-        align-self: center;
+        position: relative;
         justify-self: right;
+        margin-right: 20px;
+
+        width: 100px;
+        height: 35px;
+        border-radius: 25px;
+
+        cursor: pointer;
+        border: 1px solid gray;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 1px 1px black;
+
+        p{
+            position: absolute;
+            text-decoration: none;
+            color: black;
+
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .button_back:hover{
+        background-color: rgb(255, 255, 255);
+        box-shadow: 1px 1px black;
+
+    }
+    .button_back:active{
+        background-color: rgb(231, 231, 231);
+        box-shadow: 0px 0px black;
     }
 }

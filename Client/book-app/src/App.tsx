@@ -90,7 +90,7 @@ class App extends React.Component {
           data = await getBook(urlID)
 
           //error handle
-          if(data.Error=="ERROR"){
+          if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
           } else {
@@ -110,7 +110,7 @@ class App extends React.Component {
           data = await getBook(urlName);
 
           //error handle
-          if(data.Error=="ERROR"){
+          if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
           } else {
@@ -130,7 +130,7 @@ class App extends React.Component {
           data = await getBook(urlAuthor);
 
           //error handle
-          if(data.Error=="ERROR"){
+          if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
           } else {
