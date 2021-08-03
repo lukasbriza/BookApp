@@ -44,6 +44,22 @@ function removeByID(url: string){
             })
 }
 function addBook(){}
+function updateBook(url:string){
+    let options = {
+        method: "POST",
+    }
+    
+    return fetch(url, options)
+            .then((response) => {
+                if(response.ok){
+                    console.log("Updatováno");
+                    return response.json();;
+                } else {
+                    const error = new Error("ERROR: response updateBook failed.");
+                    return error;
+                }
+            })
+}
 
 
 
@@ -51,5 +67,6 @@ export {
     getAll,
     getBook,
     removeByID,
-    addBook
+    addBook,
+    updateBook
 };

@@ -3,13 +3,12 @@ import React from 'react';
 import {BookList} from './components/bookList/BookList';
 import {Home} from './components/homePage/Home';
 import BookListMenu from './components/bookListMenu/BookListMenu';
-import { getAll, removeByID, getBook} from "./settings/fetchAgent";
+import { getAll, removeByID, getBook, updateBook} from "./settings/fetchAgent";
 import settings from "./settings/settings";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 //////////////////
 //CONTEXT IMPORT//
@@ -44,7 +43,7 @@ class App extends React.Component {
       },
 
       editableBook:{
-          editable: true,
+          editable: false,
           id: null,
           name: null,
           author: null,
@@ -61,7 +60,7 @@ class App extends React.Component {
     }
   }
   ///////////////////////////////////////////////////
-  //functions//
+  //FUNCTIONS//
   
   async componentDidMount(){
     const url:string = settings.serverUrl+"/book/all";
@@ -94,7 +93,6 @@ class App extends React.Component {
   }
 
   async findBook(value:findBookProps, option:findBookProps){
-    //volat render all books ????? uvidíme
     let data:any;
     
     switch (option) {
@@ -103,7 +101,6 @@ class App extends React.Component {
           const urlID:findBookProps = settings.serverUrl+"/book/findId/"+value;  
           data = await getBook(urlID)
 
-          //error handle
           if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
@@ -123,7 +120,6 @@ class App extends React.Component {
           const urlName:findBookProps = settings.serverUrl+"/book/findName/"+value;
           data = await getBook(urlName);
 
-          //error handle
           if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
@@ -143,7 +139,6 @@ class App extends React.Component {
           const urlAuthor:findBookProps = settings.serverUrl+"/book/findAuthor/"+value;
           data = await getBook(urlAuthor);
 
-          //error handle
           if(data.Error==="ERROR"){
             console.log("error");
             alert("Nebyla nalezena žádná kniha. Zkuste znovu."); 
@@ -176,27 +171,43 @@ class App extends React.Component {
     });
   }
 
-  showEditPage(id:string | number,name:string,author:string,description:string | null){
-    console.log(id,name,author,description);
+  showEditPage(objProps:editPageProps){
     this.setState(()=>{
       return {
         editableBook:{
-          editable: true,
-          id: id,
-          name: name,
-          author: author,
-          description: description,
+          editable: false,
+          id: objProps.id,
+          name: objProps.name,
+          author: objProps.author,
+          description: objProps.description,
         }
       }
     })
   }
 
-  bookEdit(){
+  async bookEdit(objProps:editPageProps){
     //získat editované záznamy
+    let id = objProps.id;
+    let name = objProps.name;
+    let author = objProps.author;
+    let description = objProps.description;
+
+    if(description == null || description == undefined || description === ""){
+      description = "";
+    }
     //poslat update na server
+    let data;
+    console.log(id, name, author, description);
+    const url:string = settings.serverUrl + "/book/update?id="+ id + "&name=" + name + "&author=" + author + "&description=" + description;
+    data = await updateBook(url);
     //získat editované záznamy zpět
-    //ukázat editovanou knihu v editSection
-    //dát možnost editovat
+    if(data.ERROR){
+      console.log(data.ERROR);
+      alert("Vyskytl se error.");
+    } else {
+      console.log(data);
+      this.getAllBooks();
+    }
   }
   //////////////////////////////////////////////////
   render() {

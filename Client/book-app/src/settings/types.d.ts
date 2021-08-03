@@ -29,3 +29,10 @@ type bookOverviewState = {
     author: string |null,
     description?: string | null
 }
+
+type editPageProps = {
+    id: string | number,
+    name: string,
+    author: string,
+    description?: string | null
+}
