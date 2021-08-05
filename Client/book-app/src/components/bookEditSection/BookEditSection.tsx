@@ -32,7 +32,6 @@ class BookEditSection extends React.Component<any,any>{
     componentDidMount(){
         this.setState(()=>{
             let context = this.context;
-            console.log("ZDE: " + context.editableBook.editable);
                 if(context.showBook.description === null || context.showBook.description === undefined || context.showBook.description ===''){
                     return{
                         editable: context.editableBook.editable,
@@ -73,7 +72,6 @@ class BookEditSection extends React.Component<any,any>{
         let description = document.getElementsByClassName("editDescription")[0];
 
         if(changeTo === true){
-            console.log("false");
             this.setState(()=>{
                 return{
                     editable: true,
@@ -98,7 +96,6 @@ class BookEditSection extends React.Component<any,any>{
             
         }
         if(changeTo === false){
-            console.log("true");
             this.setState(()=>{
                 return{
                     editable: false

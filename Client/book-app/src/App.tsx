@@ -72,7 +72,7 @@ class App extends React.Component {
       return {refreshed: true, booksToShow: data}
     });
 
-    await console.log("APP: ComponenDidMound sucess.");
+    console.log("APP: ComponenDidMound sucess.");
   }
 
   async getAllBooks(){
@@ -161,7 +161,6 @@ class App extends React.Component {
   }
 
   bookOverview(propsObj:bookOverviewProps){
-    console.log(propsObj.id, propsObj.name, propsObj.author, propsObj.description);
     this.setState(()=>{
       return {
         showBook: {

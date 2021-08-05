@@ -32,7 +32,6 @@ class BookAddSection extends React.Component<any,any>{
         this.setState(()=>{
             return {name: ' ', author: ' ', description: ' '}
         });
-        console.log("state set");
         
     }
     handleName(event:any){
