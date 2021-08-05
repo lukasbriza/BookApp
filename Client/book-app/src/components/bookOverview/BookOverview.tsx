@@ -41,6 +41,7 @@ class BookOverview extends React.Component<bookOverviewProps,bookOverviewState>{
     render() {
         return (
                 <section className="bookOverview_wrapper">
+                    <div className="idValue">Id: {this.state.id}</div>
                     <div className="nameWrapper">
                         <div className="bookName">{this.state.name}</div>
                         <div className="underliner"></div>
