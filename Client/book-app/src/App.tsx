@@ -3,7 +3,7 @@ import React from 'react';
 import {BookList} from './components/bookList/BookList';
 import {Home} from './components/homePage/Home';
 import BookListMenu from './components/bookListMenu/BookListMenu';
-import { getAll, removeByID, getBook, updateBook} from "./settings/fetchAgent";
+import { getAll, removeByID, getBook, updateBook, addBook } from "./settings/fetchAgent";
 import settings from "./settings/settings";
 import {
   BrowserRouter as Router,
@@ -27,6 +27,7 @@ class App extends React.Component {
     this.bookOverview = this.bookOverview.bind(this);
     this.showEditPage = this.showEditPage.bind(this);
     this.bookEdit = this.bookEdit.bind(this);
+    this.addBooks = this.addBooks.bind(this);
 
     //main state here
     this.state = {
@@ -57,6 +58,7 @@ class App extends React.Component {
       showOverview: this.bookOverview,
       showEditPage: this.showEditPage,
       editBook: this.bookEdit,
+      addBook: this.addBooks,
     }
   }
   ///////////////////////////////////////////////////
@@ -192,12 +194,11 @@ class App extends React.Component {
     let author = objProps.author;
     let description = objProps.description;
 
-    if(description == null || description == undefined || description === ""){
+    if(description === null || description === undefined || description === ""){
       description = "";
     }
     //poslat update na server
     let data;
-    console.log(id, name, author, description);
     const url:string = settings.serverUrl + "/book/update?id="+ id + "&name=" + name + "&author=" + author + "&description=" + description;
     data = await updateBook(url);
     //získat editované záznamy zpět
@@ -208,6 +209,21 @@ class App extends React.Component {
       console.log(data);
       this.getAllBooks();
     }
+  }
+
+  async addBooks(objProps:addBookProps){
+    let name = objProps.name;
+    let author = objProps.author;
+    let description = objProps.description;
+
+    let dataObj:any = {
+      name: name,
+      author: author,
+      description: description
+    }
+
+    const url:string = settings.serverUrl + "/book/add";
+    await addBook(url,dataObj);
   }
   //////////////////////////////////////////////////
   render() {

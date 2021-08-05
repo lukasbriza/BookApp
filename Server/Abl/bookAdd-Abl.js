@@ -7,7 +7,6 @@ const {Book} = require("../Schemas/mongooseSchema");
 async function bookAdd(req, res, schema){
     const ajv = new Ajv();
     const valid = ajv.validate(schema,req.body);
-    
     if(valid){
         const newBook = new Book({
             name: req.body.name,
@@ -17,7 +16,7 @@ async function bookAdd(req, res, schema){
         await newBook.save((err)=>{
             if(err){return handleError(err);}
             //wait for
-            res.send("Kniha vložena. Její _id je: " + newBook._id);
+            return res.json({ID: newBook._id});
         });
     }
     if(!valid){

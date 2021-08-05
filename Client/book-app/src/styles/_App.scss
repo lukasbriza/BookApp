@@ -16,7 +16,7 @@
         /////////
         height: 80%;
         //min-max
-        min-height: 600px;
+        min-height: 686px;
         /////////
 
         position: relative;
@@ -32,5 +32,40 @@
         border-style: solid;
 
         overflow-x: hidden;
+
+        position: relative;
+        .AddButton{
+            position: absolute;
+            width: 45px;
+            height: 45px;
+
+            right: 30px;
+            bottom: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid gray;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 1px 1px black;
+
+            svg{
+                width: 70%;
+                height: 70%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+            }
+        }
+        .AddButton:hover{
+            background-color: rgb(255, 255, 255);
+            box-shadow: 1px 1px black;
+
+        }
+        .AddButton:active{
+            background-color: rgb(231, 231, 231);
+            box-shadow: 0px 0px black;
+        }
+
+        
     }
 }

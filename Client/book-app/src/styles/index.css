@@ -12,7 +12,7 @@
   min-width: 534px;
   max-width: 1000px;
   height: 80%;
-  min-height: 600px;
+  min-height: 686px;
   position: relative;
   left: 50%;
   top: 50px;
@@ -24,6 +24,43 @@
   border-width: 1px;
   border-style: solid;
   overflow-x: hidden;
+  position: relative;
+}
+
+.App .bookAppWrapper .AddButton {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid gray;
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.App .bookAppWrapper .AddButton svg {
+  width: 70%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.App .bookAppWrapper .AddButton:hover {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.App .bookAppWrapper .AddButton:active {
+  background-color: #e7e7e7;
+  -webkit-box-shadow: 0px 0px black;
+          box-shadow: 0px 0px black;
 }
 
 .BookLi {
@@ -496,6 +533,121 @@
   top: 55%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.bookEdit_wrapper .buttonSection .button_back_edit:hover, .bookEdit_wrapper .buttonSection .confirm_edit:hover {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.bookEdit_wrapper .buttonSection .button_back_edit:active, .bookEdit_wrapper .buttonSection .confirm_edit:active {
+  background-color: #e7e7e7;
+  -webkit-box-shadow: 0px 0px black;
+          box-shadow: 0px 0px black;
+}
+
+.bookAddSection {
+  width: 100%;
+  position: absolute;
+  background-color: #f8ead9;
+  top: 84px;
+  height: calc(100% - 84px);
+  min-height: 571px;
+  max-height: 800px;
+  padding: 40px 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50%;
+      grid-template-columns: 50%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bookAddSection .addBookHeader {
+  text-align: center;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.bookAddSection .bookNameWrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.bookAddSection .bookNameWrapper .bookNameLabel {
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+.bookAddSection .bookNameWrapper .bookNameInput {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.bookAddSection .authorNameWrapper {
+  display: block;
+}
+
+.bookAddSection .authorNameWrapper .bookAuthorLabel {
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+.bookAddSection .authorNameWrapper .bookAuthorInput {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.bookAddSection .descriptionWrapper {
+  display: block;
+}
+
+.bookAddSection .descriptionWrapper .descriptionLabel {
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+.bookAddSection .descriptionWrapper .descriptionInput {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  overflow-x: hidden;
+  border-color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.bookAddSection .add_submit {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 120px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 0px 10px;
+  cursor: pointer;
+  border: 1px solid gray;
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.bookAddSection .add_submit:hover {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.bookAddSection .add_submit:active {
+  background-color: #e7e7e7;
+  -webkit-box-shadow: 0px 0px black;
+          box-shadow: 0px 0px black;
 }
 
 * {

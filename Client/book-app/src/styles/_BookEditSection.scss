@@ -107,5 +107,14 @@
                 transform: translate(-50%, -50%);
             }
         }
+        .button_back_edit:hover,.confirm_edit:hover{
+            background-color: rgb(255, 255, 255);
+            box-shadow: 1px 1px black;
+    
+        }
+        .button_back_edit:active,.confirm_edit:active{
+            background-color: rgb(231, 231, 231);
+            box-shadow: 0px 0px black;
+        }
     }
 }

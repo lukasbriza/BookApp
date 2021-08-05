@@ -34,4 +34,8 @@
 @mixin h50p{
     height: 50%;
 }
+@mixin centerh{
+    left: 50%;
+    transform: translateX(-50%);;
+}
 ////////////////////////////////////////////

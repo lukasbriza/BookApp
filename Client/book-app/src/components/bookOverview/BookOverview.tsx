@@ -20,7 +20,7 @@ class BookOverview extends React.Component<bookOverviewProps,bookOverviewState>{
     async componentDidMount(){
         let context = await this.context;
         await this.setState(()=>{
-            if(context.showBook.description === null || context.showBook.description == undefined || context.showBook.description ==''){
+            if(context.showBook.description === null || context.showBook.description === undefined || context.showBook.description ===''){
                 return{
                     id: context.showBook.id,
                     name: context.showBook.name,

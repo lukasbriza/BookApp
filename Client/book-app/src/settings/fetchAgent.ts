@@ -1,4 +1,3 @@
-
 function getAll(url: string){
     return fetch(url)
             .then((response) => {
@@ -43,7 +42,28 @@ function removeByID(url: string){
                 }
             })
 }
-function addBook(){}
+function addBook(url:string, obj:addBookProps){
+    let options:any = {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }
+    return fetch(url , options)
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                } else {
+                    const error = new Error("ERROR: response addBook failed.");
+                    return console.log(error);
+                }
+            })
+            .then((response)=>{
+                alert("Přidaná kniha má ID: "+ response.ID);
+            })
+}
 function updateBook(url:string){
     let options = {
         method: "POST",

@@ -5,6 +5,8 @@ import RefreshSection from "./RefreshSection";
 import { Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import { BookOverview } from "../bookOverview/BookOverview";
 import { BookEditSection } from "../bookEditSection/BookEditSection";
+import { BookAddButton } from "../bookAddSection/BookAddButton";
+import { BookAddSection } from "../bookAddSection/BookAddSection";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
@@ -19,12 +21,13 @@ class BookList extends React.Component {
                 <Switch>
                     <Route path="/bookApp/bookOverview" component={BookOverview}/>
                     <Route path="/bookApp/bookEdit" component={BookEditSection}/>
+                    <Route path="/bookApp/addBook" component={BookAddSection}/>
                     <Route exact path="/bookApp">
                         <bookContext.Consumer>
                             {(context) => {
                                 //////////////////////////////////////////////
                                 //BL
-                                if(context.refreshed==true){
+                                if(context.refreshed===true){
                                     result = context.booksToShow;
                                     components = result.map((book:bookType) => { 
                                         return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
@@ -45,6 +48,7 @@ class BookList extends React.Component {
                                                 <ul className="BookList_section">
                                                     {components}
                                                 </ul>
+                                                <BookAddButton/>
                                             </Fragment>
                                         )
                                     }

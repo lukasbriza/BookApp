@@ -36,3 +36,9 @@ type editPageProps = {
     author: string,
     description?: string | null
 }
+
+type addBookProps = {
+    name: string,
+    author: string,
+    description?: string | null
+}

@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import ContentEditable from 'react-contenteditable';
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
-
 //////////////////
 
 class BookEditSection extends React.Component<any,any>{
@@ -34,7 +33,7 @@ class BookEditSection extends React.Component<any,any>{
         this.setState(()=>{
             let context = this.context;
             console.log("ZDE: " + context.editableBook.editable);
-                if(context.showBook.description === null || context.showBook.description == undefined || context.showBook.description ==''){
+                if(context.showBook.description === null || context.showBook.description === undefined || context.showBook.description ===''){
                     return{
                         editable: context.editableBook.editable,
                         id: context.editableBook.id,

@@ -14,9 +14,9 @@ const FinderForm = () => {
     let handleOptionChange = (e:any) =>{setOption(e.target.value);}
     let handleInputChange = (e:any) =>{setInputValue(e.target.value)}
     let handleSubmitButton = () => {
-        if (inputValue == null || 
-            inputValue == "" || 
-            inputValue == undefined)
+        if (inputValue === null || 
+            inputValue === "" || 
+            inputValue === undefined)
         {
             alert("Zadej hodnotu, podle které vyhledávat.")
         } else {
