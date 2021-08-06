@@ -8,7 +8,7 @@ class About extends React.Component {
                     <u>Technology</u><br/>NodeJS, JavaScript, TypeScript, HTML, CSS <br/><br/>
                     <u>Frameworks</u><br/>Express.js, Ajv, React, SCSS <br/><br/>
                     <u>Architecture</u><br/>Model-view-controller (MVC) <br/><br/>
-                    <u>FE/BE communication</u><br/>API
+                    <u>FE/BE communication</u><br/>REST API
                 </p>
             </section>
         )
