@@ -3,6 +3,7 @@ import React from 'react';
 import {BookList} from './components/bookList/BookList';
 import {Home} from './components/homePage/Home';
 import BookListMenu from './components/bookListMenu/BookListMenu';
+import { Menu } from "./components/menu/Menu";
 import { getAll, removeByID, getBook, updateBook, addBook } from "./settings/fetchAgent";
 import settings from "./settings/settings";
 import {
@@ -233,6 +234,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/bookApp">
+                <Menu/>
                 <section className="bookAppWrapper">
                   <BookListMenu/>
                   <BookList/>

@@ -1,0 +1,17 @@
+.about{
+    width: 100%;
+    height: calc(100% - 84px);
+    position: relative;
+
+    .text{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+
+        u{
+            font-size: 20px;
+        }
+    }
+}

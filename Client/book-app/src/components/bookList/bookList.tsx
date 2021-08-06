@@ -2,11 +2,12 @@ import React from "react";
 import {Book} from "../book/Book";
 import { Fragment } from "react";
 import RefreshSection from "./RefreshSection";
-import { Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { BookOverview } from "../bookOverview/BookOverview";
 import { BookEditSection } from "../bookEditSection/BookEditSection";
 import { BookAddButton } from "../bookAddSection/BookAddButton";
 import { BookAddSection } from "../bookAddSection/BookAddSection";
+import { About } from "../about/About";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
@@ -17,12 +18,12 @@ class BookList extends React.Component {
         let result:any;
         let components:any;
         return(
-            <Router>
+            
                 <Switch>
-                    <Route path="/bookApp/bookOverview" component={BookOverview}/>
-                    <Route path="/bookApp/bookEdit" component={BookEditSection}/>
-                    <Route path="/bookApp/addBook" component={BookAddSection}/>
-                    <Route exact path="/bookApp">
+                    <Route  path="/bookApp/about" component={About} />
+                    <Route  path="/bookApp/bookOverview" component={BookOverview}/>
+                    <Route  path="/bookApp/bookEdit" component={BookEditSection}/>
+                    <Route  path="/bookApp/addBook" component={BookAddSection}/>
                         <bookContext.Consumer>
                             {(context) => {
                                 //////////////////////////////////////////////
@@ -63,9 +64,8 @@ class BookList extends React.Component {
                                 }
                             }
                         </bookContext.Consumer>
-                    </Route>
                 </Switch>
-            </Router>
+            
         )
     }
 }
