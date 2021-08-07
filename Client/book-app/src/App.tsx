@@ -7,15 +7,17 @@ import { Menu } from "./components/menu/Menu";
 import { getAll, removeByID, getBook, updateBook, addBook } from "./settings/fetchAgent";
 import settings from "./settings/settings";
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from "react-router-dom";
+import { createBrowserHistory } from "history";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from './settings/bookContext';
 //////////////////
 
+const history = createBrowserHistory();
 
 class App extends React.Component {
   //constructor and binding
@@ -68,10 +70,17 @@ class App extends React.Component {
   async componentDidMount(){
     const url:string = settings.serverUrl+"/book/all";
     let data = await getAll(url);
+    console.log(data);
 
-    await this.setState(()=>{
-      return {refreshed: true, booksToShow: data}
-    });
+    if(data.books === null){
+      this.setState(()=>{
+        return {refreshed: true, booksToShow: null}
+      });
+    } else {
+      this.setState(()=>{
+        return {refreshed: true, booksToShow: data}
+      });
+    }
 
     console.log("APP: ComponenDidMound sucess.");
   }
@@ -80,9 +89,15 @@ class App extends React.Component {
     const url:string = settings.serverUrl+"/book/all";
     let data = await getAll(url);
     
-    this.setState(()=>{
-      return {booksToShow: data, showRefresher: false}
-    });
+    if(data.books === null){
+      this.setState(()=>{
+        return {booksToShow: null, showRefresher: false}
+      });
+    }else{
+      this.setState(()=>{
+        return {booksToShow: data, showRefresher: false}
+      });
+    }
 
     console.log("APP: getAllBooks() sucess.");
   }
@@ -224,11 +239,12 @@ class App extends React.Component {
 
     const url:string = settings.serverUrl + "/book/add";
     await addBook(url,dataObj);
+    this.getAllBooks();
   }
   //////////////////////////////////////////////////
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <bookContext.Provider value={this.state}>
           <div className="App">
             <Switch>

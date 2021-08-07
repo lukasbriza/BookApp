@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
 //////////////////
@@ -60,7 +61,12 @@ class BookAddSection extends React.Component<any,any>{
                     <div className="descriptionLabel">Description:</div>
                     <textarea className="descriptionInput" name="description" value={this.state.description} onChange={this.handleDescription}></textarea>
                 </div>
-                <button className="add_submit" onClick={this.handleSubmit}>Add book</button>
+                <div className="button_section">
+                    <button className="add_submit" onClick={this.handleSubmit}>Add book</button>
+                    <Link className="add_submit" to="/bookApp">
+                            <p id="innerText">Back</p>
+                    </Link>
+                </div>
             </section>
         )
     }

@@ -629,7 +629,20 @@
   padding-right: 15px;
 }
 
-.bookAddSection .add_submit {
+.bookAddSection .button_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bookAddSection .button_section .add_submit {
+  position: relative;
+  text-decoration: none !important;
   -ms-grid-column-align: center;
       justify-self: center;
   width: 120px;
@@ -643,13 +656,23 @@
           box-shadow: 1px 1px black;
 }
 
-.bookAddSection .add_submit:hover {
+.bookAddSection .button_section .add_submit #innerText {
+  color: black;
+  text-decoration: none !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.bookAddSection .button_section .add_submit:hover {
   background-color: white;
   -webkit-box-shadow: 1px 1px black;
           box-shadow: 1px 1px black;
 }
 
-.bookAddSection .add_submit:active {
+.bookAddSection .button_section .add_submit:active {
   background-color: #e7e7e7;
   -webkit-box-shadow: 0px 0px black;
           box-shadow: 0px 0px black;

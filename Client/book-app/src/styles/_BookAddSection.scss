@@ -67,24 +67,40 @@
     }
   }
 
-  .add_submit{
-      justify-self: center;
-    width: 120px;
-    height: 50px;
-    border-radius: 25px;
-    margin: 0px 10px;
-    cursor: pointer;
-    border: 1px solid gray;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 1px black;
+  .button_section{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    .add_submit{
+      position: relative;
+      text-decoration: none !important;
+        justify-self: center;
+      width: 120px;
+      height: 50px;
+      border-radius: 25px;
+      margin: 0px 10px;
+      cursor: pointer;
+      border: 1px solid gray;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 1px 1px black;
+  
+      #innerText{
+        color: black;
+        text-decoration: none !important;
+        position: absolute;
+        left:50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .add_submit:hover{
+      background-color: rgb(255, 255, 255);
+      box-shadow: 1px 1px black;
+  
+    }
+    .add_submit:active{
+      background-color: rgb(231, 231, 231);
+      box-shadow: 0px 0px black;
+    }
   }
-  .add_submit:hover{
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 1px black;
-
-}
-  .add_submit:active{
-    background-color: rgb(231, 231, 231);
-    box-shadow: 0px 0px black;
-}
 }

@@ -5,14 +5,14 @@ const cors = require('cors'); // povolí CORS policy pro http requ
 const settings = require('./Public/settings');
 
 const app = express();
-const PORT = settings.serverPort;
+const PORT = process.env.PORT || settings.serverPort;
 
 ////////////////////////////////////////////////////////////////
 //MIDDLEWARE//
 app.use(json);
 app.use(express.urlencoded({ extended:true}));
 app.use(cors());
-app.use("/public/", express.static(path.join(__dirname, "public"))); //zpřístupnění složky public přes url 
+app.use(express.static(path.join(__dirname, './Public/build'))); //zpřístupnit build
 ////////////////////////////////////////////////////////////////
 //ROUTE-CONTROLL//
 const bookRoute = require('./Controller/books-controller');
@@ -29,6 +29,12 @@ mongoose.connect(
     ()=>{
     console.log("Database connected!");
 });
+////////////////////////////////////////////////////////////////
+//publikování index html na volání basic route => "/"
+/*
+app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname, 'Public','build','index.html'));
+  });*/
 ////////////////////////////////////////////////////////////////
 app.listen(PORT,()=>{
     console.log('Server běží na portu '+ PORT);

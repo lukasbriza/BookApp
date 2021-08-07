@@ -8,9 +8,10 @@ async function showAllBooks(req, res){
     await Book.find((err, result) => {
         if (err){return console.error(err);} //error handle
         if (result.length == 0){
-            return res.send("V databázi nejsou žádné zaznamenané knihy!");
+            return res.json({books:null});
+        } else {
+            res.json(result);
         }
-        res.json(result);
     })
 }
 

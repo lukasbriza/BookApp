@@ -28,7 +28,7 @@ class BookList extends React.Component {
                             {(context) => {
                                 //////////////////////////////////////////////
                                 //BL
-                                if(context.refreshed===true){
+                                if(context.refreshed===true && context.booksToShow != null){
                                     result = context.booksToShow;
                                     components = result.map((book:bookType) => { 
                                         return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
@@ -53,6 +53,15 @@ class BookList extends React.Component {
                                             </Fragment>
                                         )
                                     }
+                                } else if (context.refreshed===true && context.booksToShow===null){
+                                    return(
+                                        <Fragment>
+                                                <ul className="BookList_section">
+                                                    {components}
+                                                </ul>
+                                                <BookAddButton/>
+                                        </Fragment>
+                                    )
                                 }else{
                                     return(
                                         <ul className="BookList_section">
