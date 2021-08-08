@@ -7,17 +7,13 @@ import { Menu } from "./components/menu/Menu";
 import { getAll, removeByID, getBook, updateBook, addBook } from "./settings/fetchAgent";
 import settings from "./settings/settings";
 import {
-  Router,
   Switch,
   Route
 } from "react-router-dom";
-import { createBrowserHistory } from "history";
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from './settings/bookContext';
 //////////////////
-
-const history = createBrowserHistory();
 
 class App extends React.Component {
   //constructor and binding
@@ -244,22 +240,22 @@ class App extends React.Component {
   //////////////////////////////////////////////////
   render() {
     return (
-      <Router history={history}>
         <bookContext.Provider value={this.state}>
           <div className="App">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/bookApp">
-                <Menu/>
-                <section className="bookAppWrapper">
-                  <BookListMenu/>
-                  <BookList/>
-                </section>
-              </Route>
+              <Route path={'/(.+)'} render={() => (
+                <Route path="/bookApp">
+                  <Menu/>
+                  <section className="bookAppWrapper">
+                    <BookListMenu/>
+                    <BookList/>
+                  </section>
+                </Route>
+              )}/>
             </Switch>
           </div>
         </bookContext.Provider>
-      </Router>
     );
   }
 }

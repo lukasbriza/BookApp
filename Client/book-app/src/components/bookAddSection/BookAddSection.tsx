@@ -14,9 +14,9 @@ class BookAddSection extends React.Component<any,any>{
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            name: ' ',
-            author: ' ',
-            description: ' ',
+            name: null,
+            author: null,
+            description: null,
         }
     }
 
@@ -31,7 +31,7 @@ class BookAddSection extends React.Component<any,any>{
         this.context.addBook({name: name, author: author, description: description});
 
         this.setState(()=>{
-            return {name: ' ', author: ' ', description: ' '}
+            return {name: '', author: '', description: ''}
         });
         
     }

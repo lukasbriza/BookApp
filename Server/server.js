@@ -31,10 +31,10 @@ mongoose.connect(
 });
 ////////////////////////////////////////////////////////////////
 //publikování index html na volání basic route => "/"
-/*
+
 app.get('*', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'Public','build','index.html'));
-  });*/
+  });
 ////////////////////////////////////////////////////////////////
 app.listen(PORT,()=>{
     console.log('Server běží na portu '+ PORT);
