@@ -1,2 +1,13 @@
-BookApp
-My school project of app which is build as MVC model and tech stack is MERN (MongoDB, Express, React, NodeJS).
+# BookApp
+--------------------------  
+  
+Used languages: HTML, CSS, Javascript, Typescript  
+Used frameworks (FE): React, React-router  
+Used frameworks (BE): Express.js, Ajv  
+Used database: MongoDB  
+Back end engine: NodeJS  
+  
+---------------------------  
+
+This is one of my school project build with MERN stack. FE and BE communicate via REST API and app is build on MVC architecture.  
+With this app you can add various books (stored in MongoDB cluster), modify them and update them as you wish.
