@@ -6,6 +6,7 @@ Used frameworks (FE): React, React-router
 Used frameworks (BE): Express.js, Ajv  
 Used database: MongoDB  
 Back end engine: NodeJS  
+Preprocessors: SCSS  
   
 ---------------------------  
 
