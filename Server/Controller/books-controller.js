@@ -15,35 +15,35 @@ const {bookSchema} = require("../Schemas/book-schema");
 const {userSchema} = require("../Schemas/book-schema");
 ////////////////////////////////////////////////////////////////
 //ROUTES//
-router.post('/add/:user', (req, res) => {
+router.post('/add/:user', (req, res) => { //OK
     bookAdd(req, res, bookSchema, req.params.user);
 });
 
-router.post('/remove/:id', (req, res) =>{
-    bookRemove(req, res, req.params.id);
+router.post('/remove/:id/:user', (req, res) =>{ //OK
+    bookRemove(req, res, req.params.id, req.params.user);
 })
 
-router.post('/update', (req, res)=>{
+router.post('/update', (req, res)=>{ //OK
     bookUpdate(req, res, req.query, req.query.user);
 })
 
-router.get('/all', (req, res) =>{
-    showAllBooks(req, res);
+router.get('/all/:user', (req, res) =>{ //OK
+    showAllBooks(req, res, req.params.user);
 })
 
-router.get('/findId/:id/:user', (req, res) =>{
+router.get('/findId/:id/:user', (req, res) =>{ //OK
     findBook(req, res, '_id', req.params.id, req.params.user);
 })
 
-router.get('/findName/:name/:user', (req, res) =>{
+router.get('/findName/:name/:user', (req, res) =>{ //OK
     findBook(req, res, 'name', req.params.name, req.params.user);
 })
 
-router.get('/findAuthor/:author/:user', (req, res) =>{
+router.get('/findAuthor/:author/:user', (req, res) =>{ //OK
     findBook(req, res, 'author', req.params.author, req.params.user);
 })
 
-router.post('/register', (req, res)=>{
+router.post('/register', (req, res)=>{ //OK
     registerUser(req, res, userSchema);
 })
 ////////////////////////////////////////////////////////////////
