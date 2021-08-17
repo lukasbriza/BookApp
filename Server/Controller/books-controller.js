@@ -8,13 +8,15 @@ const {bookRemove} = require('../Abl/bookRemove-Abl');
 const {showAllBooks} = require('../Abl/showAllBooks-Abl');
 const {findBook} = require('../Abl/bookFind-Abl');
 const {bookUpdate} = require('../Abl/bookUpdate-Abl');
+const {registerUser} = require('../Abl/registerUser-Abl');
 ////////////////////////////////////////////////////////////////
 //SCHEMA TEMPLATE - import//
-const bookSchema = require("../Schemas/book-schema");
+const {bookSchema} = require("../Schemas/book-schema");
+const {userSchema} = require("../Schemas/book-schema");
 ////////////////////////////////////////////////////////////////
 //ROUTES//
-router.post('/add', (req, res) => {
-    bookAdd(req, res, bookSchema);
+router.post('/add/:user', (req, res) => {
+    bookAdd(req, res, bookSchema, req.params.user);
 });
 
 router.post('/remove/:id', (req, res) =>{
@@ -22,24 +24,27 @@ router.post('/remove/:id', (req, res) =>{
 })
 
 router.post('/update', (req, res)=>{
-    bookUpdate(req, res, req.query);
+    bookUpdate(req, res, req.query, req.query.user);
 })
 
 router.get('/all', (req, res) =>{
     showAllBooks(req, res);
 })
 
-router.get('/findId/:id', (req, res) =>{
-    findBook(req, res, '_id', req.params.id);
+router.get('/findId/:id/:user', (req, res) =>{
+    findBook(req, res, '_id', req.params.id, req.params.user);
 })
 
-router.get('/findName/:name', (req, res) =>{
-    findBook(req, res, 'name', req.params.name);
+router.get('/findName/:name/:user', (req, res) =>{
+    findBook(req, res, 'name', req.params.name, req.params.user);
 })
 
-router.get('/findAuthor/:author', (req, res) =>{
-    findBook(req, res, 'author', req.params.author);
+router.get('/findAuthor/:author/:user', (req, res) =>{
+    findBook(req, res, 'author', req.params.author, req.params.user);
 })
 
+router.post('/register', (req, res)=>{
+    registerUser(req, res, userSchema);
+})
 ////////////////////////////////////////////////////////////////
 module.exports = router;
