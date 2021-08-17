@@ -1,38 +1,32 @@
 //DEPENDENCIES//
 const mongoose = require('mongoose');
 const {Book} = require("../Schemas/mongooseSchema");
+const {User} = require("../Schemas/mongooseSchema");
 ////////////////////////////////////////////////////////////////
 //FUNCTIONS//
-async function findBook(req, res, paramName, paramValue){
-    //search by _id
-    if(paramName == '_id'){
-        await Book.find({_id: paramValue},(err, result) => {
-            if (err) {return res.json({Error: "ERROR"})} 
-            else if (result.length==0) {return res.json({Error: "ERROR"})} 
-            else { 
-                return res.json(result);
-            }
-        })
+async function findBook(req, res, paramName, paramValue, user){
+    const option = paramName;
+    const value = paramValue;
+    const name = user;
+
+    const profile = await User.find({userName: name});
+    let book;
+    switch (option) {
+        case "_id":
+            book = await profile[0].booksOfUsers.find(book => book.id === value);
+            break;
+        case "name":
+            book = await profile[0].booksOfUsers.find(book => book.name === value);
+            break;
+        case "author":
+            book = await profile[0].booksOfUsers.find(book => book.author === value);
+        break;
+       
     }
-    //search by name
-    if(paramName == 'name'){
-        await Book.find({name: paramValue},(err, result) => {
-            if (err) {return res.json({Error: "ERROR"})} 
-            else if (result.length==0) {return res.json({Error: "ERROR"})} 
-            else { 
-                return res.json(result);
-            }
-        })
-    }
-    //search by author - bude array o více
-    if(paramName == 'author'){
-        await Book.find({author: paramValue},(err, result) => {
-            if (err) {return res.json({Error: "ERROR"})} 
-            else if (result.length==0) {return res.json({Error: "ERROR"})} 
-            else { 
-                return res.json(result);
-            }
-        })
+    if(book){
+        return res.json(book);
+    } else {
+        return res.status(400).send();
     }
 }
 
