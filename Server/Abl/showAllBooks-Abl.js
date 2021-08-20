@@ -10,7 +10,7 @@ async function showAllBooks(req, res, user){
     if (bookArray.length == 0){
         return res.json({books:null});
     } else {
-        res.json(bookArray);
+        res.json({books:bookArray});
     }
 }
 
