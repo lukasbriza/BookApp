@@ -73,20 +73,62 @@ function updateBook(url:string){
             .then((response) => {
                 if(response.ok){
                     console.log("Updatováno");
-                    return response.json();;
+                    return response.json();
                 } else {
                     const error = new Error("ERROR: response updateBook failed.");
-                    return error;
+                    return console.log(error);
                 }
             })
 }
+function registerUser(obj:registrationObj){
+    const userName = obj.userName;
+    const password = obj.password;
+    const url = obj.url;
+    const json = {
+        userName: userName,
+        userPassword: password
+    }
+    let options:any = {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+    }
+    console.log(userName, password, url);
+    return fetch(url, options)
+            .then(response =>{
+                return response.json();
+            })
+            .then(response =>{
+                console.log(response);
+                return response;
+            });
+}
 
-
+function getAllUsers(url:string){
+    let options = {
+        method: "GET"
+    }
+    return fetch(url,options)
+            .then((response) => {
+                if(response.ok){
+                    console.log('List of users retreaved.')
+                    return response.json();
+                } else {
+                    const error = new Error("ERROR: response getAllUsers failed");
+                    return console.log(error);
+                }
+            })
+}
 
 export {
     getAll,
     getBook,
     removeByID,
     addBook,
-    updateBook
+    updateBook,
+    registerUser,
+    getAllUsers
 };
