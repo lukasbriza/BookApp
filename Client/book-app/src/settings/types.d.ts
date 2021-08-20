@@ -42,3 +42,9 @@ type addBookProps = {
     author: string,
     description?: string | null
 }
+
+type registrationObj = {
+    userName: string,
+    password: string,
+    url: string
+}
