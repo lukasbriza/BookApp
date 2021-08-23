@@ -31,9 +31,6 @@ async function makeBcryptPassword(password){
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        console.log(salt);
-        console.log(hashedPassword);
-
         return hashedPassword;
     } catch {
         console.log('makeBcryptPassword ERROR');

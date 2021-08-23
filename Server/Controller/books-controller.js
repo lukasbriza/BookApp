@@ -10,6 +10,7 @@ const {findBook} = require('../Abl/bookFind-Abl');
 const {bookUpdate} = require('../Abl/bookUpdate-Abl');
 const {registerUser} = require('../Abl/registerUser-Abl');
 const {getAllUsers} = require('../Abl/getAllUsers-Abl');
+const {loginUser} = require('../Abl/loginUser-Abl');
 ////////////////////////////////////////////////////////////////
 //SCHEMA TEMPLATE - import//
 const {bookSchema} = require("../Schemas/book-schema");
@@ -44,11 +45,14 @@ router.get('/findAuthor/:author/:user', (req, res) =>{ //OK //FE OK
     findBook(req, res, 'author', req.params.author, req.params.user);
 })
 
-router.post('/register', (req, res)=>{ //OK
+router.post('/register', (req, res)=>{ //OK //FE OK
     registerUser(req, res, userSchema);
 })
-router.get('/allUsers', (req, res)=>{ 
+router.get('/allUsers', (req, res)=>{ //OK //FE OK
     getAllUsers(req,res);
+})
+router.post('/login', (req, res) => { //OK //FE OK
+    loginUser(req, res);
 })
 ////////////////////////////////////////////////////////////////
 module.exports = router;

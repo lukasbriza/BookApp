@@ -11,11 +11,8 @@ async function bookAdd(req, res, schema, user){
     const userProfile = await User.find({userName: userName},(err,result)=>{
         if(err){res.json({Error: "find ERROR"})}
         else if (result.length==0){res.json({result: false})}
-        else{
-            return result;
-        }
+        else{return result;}
     });
-    console.log(userName, await userProfile);
 
     //add book to array
     const ajv = new Ajv();
@@ -27,12 +24,21 @@ async function bookAdd(req, res, schema, user){
             author: req.body.author,
             description: req.body.description
         })
-        userProfile[0].booksOfUsers.push(newBook);
-        console.log(userProfile);
-        userProfile[0] = await userProfile[0].save((err,result)=>{
-            if (err){return  res.json({Error: " save ERROR"});}
-            return res.json(result);
-        })
+        //is book unigue?
+        let uniqueBook = userProfile[0].booksOfUsers.find(book => book.name === req.body.name);
+
+        if(uniqueBook){
+            //not unique
+            res.json({unique : false});
+        } else {
+            //unique
+            userProfile[0].booksOfUsers.push(newBook);
+
+            userProfile[0] = await userProfile[0].save((err,result)=>{
+                if (err){return  res.json({Error: " save ERROR"});}
+                return res.json({unique : true});
+            })
+        }
     } else {
         return await res.status(400).json({error: ajv.errors});
     }
