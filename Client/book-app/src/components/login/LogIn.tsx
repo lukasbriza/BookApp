@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { registerUser, getAllUsers, loginUser } from '../../settings/fetchAgent';
 import  settings  from '../../settings/settings';
-import { setCookies } from '../../settings/cookies';
+import { setCookies, removeCookies } from '../../settings/cookies';
 
 //////////////////
 //CONTEXT IMPORT//
@@ -51,8 +51,14 @@ class LogIn extends React.Component <any,any>{
         else if(response.userName === true && response.userPassword === true){
             //login + redirect to main
             alert('Login was successful!');
-            context.setUser(userName);
-            setCookies({userName: userName, isLogged: true});
+            await context.setUser(userName);
+
+            removeCookies("userName");
+            removeCookies("isLogged");  
+            removeCookies("path");
+
+            await setCookies({userName: userName, isLogged: true});
+            await context.actualiseBooks();
             this.redirect();
         }
     }
@@ -96,7 +102,11 @@ class LogIn extends React.Component <any,any>{
             const context = await this.context;
             await context.setUser(response.userName);
             //setcookies
-            setCookies({userName: response.userName, isLogged: true})        
+            removeCookies("userName");
+            removeCookies("isLogged");  
+            removeCookies("path");
+            await setCookies({userName: response.userName, isLogged: true});
+            await context.actualiseBooks();    
             this.redirect();     
         }
     }

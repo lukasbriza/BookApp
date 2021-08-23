@@ -11,7 +11,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { setCookies, readCookies } from './settings/cookies';
+import { setCookies, readCookies, removeCookies } from './settings/cookies';
 import { LogIn } from './components/login/LogIn';
 //////////////////
 //CONTEXT IMPORT//
@@ -74,20 +74,21 @@ class App extends React.Component<any,any> {
 
   componentDidMount(){
     let cookies:any = readCookies();
-    
+    console.log("domponent did mount")
     // 1) má účet v cookies a je přihlášený
-      if(cookies.isLogged === "true" && this.state.redirect === null){
-        setCookies({
-          userName: cookies.userName,
-          isLogged: true,
-        });
-        this.setState(()=>{
-          return {userName: cookies.userName, isLogged: true, redirect: false}
-        });
-        this.getAllBooks();
+      if(cookies.isLogged == "true"){
         
+          setCookies({
+            userName: cookies.userName,
+            isLogged: true,
+          });
+          this.setState(()=>{
+            return {userName: cookies.userName, isLogged: true, redirect: false}
+          });
+          this.getAllBooks();
+                
     // 2) má účet v cookies a není přihlášený => stav po odhlášení
-      } else if(cookies.isLogged === "false" && this.state.redirect === null){
+      } else if(cookies.isLogged == "false"){
           alert('nejsi prihlasen');
           this.setState(()=>{return {redirect: true}});
     // 3) nemá cookies
@@ -95,6 +96,10 @@ class App extends React.Component<any,any> {
           alert('nemas cookies');
           this.setState(()=>{return {redirect: true}});
       }
+  }
+  componentDidUpdate(){
+    console.log("component did update");
+    
   }
 ////////////////////////////////////////////////////////////////////////////
   async getAllBooks(){
@@ -269,13 +274,17 @@ class App extends React.Component<any,any> {
   }
 
   logOutUser(){
+    removeCookies("userName");
+    removeCookies("isLogged");  
+    removeCookies("path"); 
+
     this.setState(()=>{
       return{
         isLogged: false,
         redirect:true,
         userName:null
       }
-    })
+    });
   }
 
   //////////////////////////////////////////////////
