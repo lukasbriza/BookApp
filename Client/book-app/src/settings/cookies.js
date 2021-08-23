@@ -26,13 +26,15 @@ return result
 
 function setExpDayvalue(){
     let newDate = new Date();
-    console.log(newDate);
     let expDays = 1;
     let expiresIn = newDate.setTime(newDate.getTime() + (expDays * 24 * 60 * 60 * 1000));
         
     return expiresIn;
 }
 
+function removeCookies(name){
+    document.cookie = name+"= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+}
 
 
-export { setCookies, readCookies, setExpDayvalue };
+export { setCookies, readCookies, removeCookies };
