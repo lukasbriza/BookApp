@@ -804,6 +804,93 @@
   font-size: 20px;
 }
 
+.logIn {
+  width: 100vw;
+  height: 100%;
+  background: #fff0dd;
+  min-width: 534px;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logIn .loginForm_container {
+  background: #dfdfdf;
+  padding: 40px;
+  border-radius: 25px;
+  border: solid black 1px;
+  min-width: 300px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.logIn .loginForm_container #name {
+  font-size: 23px;
+}
+
+.logIn .loginForm_container #nameInput {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.logIn .loginForm_container #password {
+  font-size: 23px;
+}
+
+.logIn .loginForm_container #passwordInput {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logIn .loginForm_container #showpassword {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.logIn .loginForm_container .button_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.logIn .loginForm_container .button_section .login, .logIn .loginForm_container .button_section .register {
+  width: 100px;
+  height: 35px;
+  border-radius: 25px;
+  margin: 0px 10px;
+  cursor: pointer;
+  border: 1px solid gray;
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.logIn .loginForm_container .button_section .login:hover, .logIn .loginForm_container .button_section .register:hover {
+  background-color: white;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+}
+
+.logIn .loginForm_container .button_section .login:active, .logIn .loginForm_container .button_section .register:active {
+  background-color: #e7e7e7;
+  -webkit-box-shadow: 0px 0px black;
+          box-shadow: 0px 0px black;
+}
+
+.logIn .loginForm_container input:focus {
+  border: 2px black solid;
+}
+
 * {
   margin: 0px;
   outline: none;
