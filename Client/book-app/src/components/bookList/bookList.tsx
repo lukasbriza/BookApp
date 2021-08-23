@@ -12,11 +12,9 @@ import { About } from "../about/About";
 //CONTEXT IMPORT//
 import {bookContext} from '../../settings/bookContext';
 //////////////////
-class BookList extends React.Component {
-    
+class BookList extends React.Component<any,any> {
     render() {
-        let result:any;
-        let components:any;
+        
         return(
             
                 <Switch>
@@ -24,63 +22,58 @@ class BookList extends React.Component {
                     <Route  path="/bookApp/bookOverview" component={BookOverview}/>
                     <Route  path="/bookApp/bookEdit" component={BookEditSection}/>
                     <Route  path="/bookApp/addBook" component={BookAddSection}/>
-                        <bookContext.Consumer>
-                            {(context) => {
-                                //////////////////////////////////////////////
-                                //BL
-                                if(context.refreshed===true && context.booksToShow != null){
-                                    result = context.booksToShow;
-                                    components = result.map((book:bookType) => { 
-                                        return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
-                                    });
-                                    if(context.showRefresher===true){
-                                        return(
-                                            <Fragment>
-                                                <ul className="BookList_section">
-                                                    {components}
-                                                </ul>
-                                                <RefreshSection/>
-                                            </Fragment> 
-                                        )
+                    <Route  path="/bookApp">
+                    {()=>{
+                            //show founded book
+                            if(this.context.showRefresher === true){
+                                
+                                let components = this.context.booksToShow.map((book:bookType) => { 
+                                    return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
+                                });
 
-                                    }else if(context.showRefresher===false){
-                                        return(  
-                                            <Fragment>
-                                                <ul className="BookList_section">
-                                                    {components}
-                                                </ul>
-                                                <BookAddButton/>
-                                            </Fragment>
-                                        )
-                                    }
-                                } else if (context.refreshed===true && context.booksToShow===null){
-                                    return(
-                                        <Fragment>
-                                                <ul className="BookList_section">
-                                                    {components}
-                                                </ul>
-                                                <BookAddButton/>
-                                        </Fragment>
-                                    )
-                                }else{
-                                    return(
+                                return(
+                                    <Fragment>
                                         <ul className="BookList_section">
-                                                <div>Loading...</div>
+                                            {components}
                                         </ul>
-                                    );
-                                }
-                                //////////////////////////////////////////////
-                                }
+                                        <RefreshSection/>
+                                    </Fragment> 
+                                )
                             }
-                        </bookContext.Consumer>
+                            //no booksToShow
+                            if(this.context.booksToShow === [] && this.context.showRefresher === false){
+                                return(
+                                    <ul className="BookList_section">
+                                            <div>Loading...</div>
+                                    </ul>
+                                );
+                            }
+                            //there are books to show
+                            if(this.context.booksToShow !== [] && this.context.showRefresher === false){
+
+                                let components = this.context.booksToShow.map((book:bookType) => { 
+                                    return <Book id={book._id} name={book.name} author={book.author} description={book.description}/>
+                                });
+
+                                return(  
+                                    <Fragment>
+                                        <ul className="BookList_section">
+                                            {components}
+                                        </ul>
+                                        <BookAddButton/>
+                                    </Fragment>
+                                )
+                            }
+                        }
+                    }
+                    </Route>
+                        
+                    
                 </Switch>
             
         )
     }
 }
 
+BookList.contextType = bookContext;
 export {BookList};
-
-
-    
-

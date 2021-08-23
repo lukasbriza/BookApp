@@ -16,11 +16,11 @@ function getBook(url: string){
     return fetch(url)
             .then((response) => {
                 if(response.ok){
+                    console.log(response);
                     return response.json();
                 } else {
                     const error = new Error("ERROR: response getBook failed.");
                     console.log(error);
-                    console.log(response);
                 }
             })
             .then(book => {
@@ -61,7 +61,12 @@ function addBook(url:string, obj:addBookProps){
                 }
             })
             .then((response)=>{
-                alert("Přidaná kniha má ID: "+ response.ID);
+                let unique = response.unique;
+                if(unique){
+                    alert("Book is unique! Sucessfuly added to booklist.");
+                } else {
+                    alert("Book isn´t unique. Try again.");
+                }
             })
 }
 function updateBook(url:string){
@@ -123,6 +128,28 @@ function getAllUsers(url:string){
             })
 }
 
+function loginUser(obj:any, url:string){
+    let options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }
+    return fetch(url, options)
+            .then((response) => {
+                if(response.ok){
+                    console.log('User logged.');
+                    return response.json();
+                } else {
+                    const error = new Error("ERROR: response loginUser failed");
+                    return console.log(error);
+                }
+            });
+            
+}
+
 export {
     getAll,
     getBook,
@@ -130,5 +157,6 @@ export {
     addBook,
     updateBook,
     registerUser,
-    getAllUsers
+    getAllUsers,
+    loginUser
 };

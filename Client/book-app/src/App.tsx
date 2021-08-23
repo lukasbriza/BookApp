@@ -8,14 +8,17 @@ import { getAll, removeByID, getBook, updateBook, addBook } from "./settings/fet
 import settings from "./settings/settings";
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
+import { setCookies, readCookies } from './settings/cookies';
+import { LogIn } from './components/login/LogIn';
 //////////////////
 //CONTEXT IMPORT//
 import {bookContext} from './settings/bookContext';
 //////////////////
 
-class App extends React.Component {
+class App extends React.Component<any,any> {
   //constructor and binding
   constructor(props:any){
     super(props);
@@ -27,12 +30,16 @@ class App extends React.Component {
     this.showEditPage = this.showEditPage.bind(this);
     this.bookEdit = this.bookEdit.bind(this);
     this.addBooks = this.addBooks.bind(this);
+    this.setUser = this.setUser.bind(this);
+    this.logOutUser = this.logOutUser.bind(this);
 
     //main state here
     this.state = {
-      refreshed: false,
       showRefresher: false,
-      booksToShow: null,
+      booksToShow: [],
+      isLogged: false,
+      redirect: null,
+      userName: null,
 
       //temporary data
       showBook: {
@@ -58,40 +65,51 @@ class App extends React.Component {
       showEditPage: this.showEditPage,
       editBook: this.bookEdit,
       addBook: this.addBooks,
+      setUser: this.setUser,
+      logOutUser: this.logOutUser
     }
   }
   ///////////////////////////////////////////////////
   //FUNCTIONS//
-  
-  async componentDidMount(){
-    const url:string = settings.serverUrl+"/book/all";
-    let data = await getAll(url);
-    console.log(data);
 
-    if(data.books === null){
-      this.setState(()=>{
-        return {refreshed: true, booksToShow: null}
-      });
-    } else {
-      this.setState(()=>{
-        return {refreshed: true, booksToShow: data}
-      });
-    }
-
-    console.log("APP: ComponenDidMound sucess.");
-  }
-
-  async getAllBooks(){
-    const url:string = settings.serverUrl+"/book/all";
-    let data = await getAll(url);
+  componentDidMount(){
+    let cookies:any = readCookies();
     
-    if(data.books === null){
+    // 1) má účet v cookies a je přihlášený
+      if(cookies.isLogged === "true" && this.state.redirect === null){
+        setCookies({
+          userName: cookies.userName,
+          isLogged: true,
+        });
+        this.setState(()=>{
+          return {userName: cookies.userName, isLogged: true, redirect: false}
+        });
+        this.getAllBooks();
+        
+    // 2) má účet v cookies a není přihlášený => stav po odhlášení
+      } else if(cookies.isLogged === "false" && this.state.redirect === null){
+          alert('nejsi prihlasen');
+          this.setState(()=>{return {redirect: true}});
+    // 3) nemá cookies
+      } else if(this.state.redirect === null) {
+          alert('nemas cookies');
+          this.setState(()=>{return {redirect: true}});
+      }
+  }
+////////////////////////////////////////////////////////////////////////////
+  async getAllBooks(){
+    let cookies:any = readCookies();
+
+    const url:string = settings.serverUrl+"/book/all/"+cookies.userName;
+    let data = await getAll(url);
+    let books = data.books;
+    if(books.length===0){ 
       this.setState(()=>{
         return {booksToShow: null, showRefresher: false}
       });
     }else{
       this.setState(()=>{
-        return {booksToShow: data, showRefresher: false}
+        return {booksToShow: books, showRefresher: false}
       });
     }
 
@@ -99,7 +117,9 @@ class App extends React.Component {
   }
 
   async removeBook(id:id){
-    const url:string = settings.serverUrl+"/book/remove/"+id;
+    
+
+    const url:string = settings.serverUrl+"/book/remove/"+id+"/"+this.state.userName;
     await removeByID(url);
     await this.getAllBooks();
 
@@ -112,7 +132,7 @@ class App extends React.Component {
     switch (option) {
       case "Id":
           //find by id
-          const urlID:findBookProps = settings.serverUrl+"/book/findId/"+value;  
+          const urlID:findBookProps = settings.serverUrl+"/book/findId/"+value+"/"+this.state.userName;  
           data = await getBook(urlID)
 
           if(data.Error==="ERROR"){
@@ -122,7 +142,7 @@ class App extends React.Component {
 
           //result
             await this.setState(()=>{
-              return {booksToShow: data,
+              return {booksToShow: [data],
                       showRefresher: true}
             }) 
             console.log("APP: findBook() sucess.");
@@ -131,7 +151,7 @@ class App extends React.Component {
     
       case "Name":
           //find by name
-          const urlName:findBookProps = settings.serverUrl+"/book/findName/"+value;
+          const urlName:findBookProps = settings.serverUrl+"/book/findName/"+value+"/"+this.state.userName;
           data = await getBook(urlName);
 
           if(data.Error==="ERROR"){
@@ -141,7 +161,7 @@ class App extends React.Component {
             
           //result
             await this.setState(()=>{
-              return {booksToShow: data,
+              return {booksToShow: [data],
                 showRefresher: true}
             }) 
             console.log("APP: findBook() sucess.");
@@ -150,7 +170,7 @@ class App extends React.Component {
 
       case "Author":
           //find by author
-          const urlAuthor:findBookProps = settings.serverUrl+"/book/findAuthor/"+value;
+          const urlAuthor:findBookProps = settings.serverUrl+"/book/findAuthor/"+value+"/"+this.state.userName;
           data = await getBook(urlAuthor);
 
           if(data.Error==="ERROR"){
@@ -160,7 +180,7 @@ class App extends React.Component {
             
           //result
             await this.setState(()=>{
-              return {booksToShow: data,
+              return {booksToShow: [data],
                 showRefresher: true}
             }) 
             console.log("APP: findBook() sucess.");
@@ -210,14 +230,14 @@ class App extends React.Component {
     }
     //poslat update na server
     let data;
-    const url:string = settings.serverUrl + "/book/update?id="+ id + "&name=" + name + "&author=" + author + "&description=" + description;
+
+    const url:string = settings.serverUrl + "/book/update?id="+ id + "&name=" + name + "&author=" + author + "&description=" + description + "&user=" + this.state.userName;
     data = await updateBook(url);
     //získat editované záznamy zpět
     if(data.ERROR){
       console.log(data.ERROR);
       alert("Vyskytl se error.");
     } else {
-      console.log(data);
       this.getAllBooks();
     }
   }
@@ -233,24 +253,57 @@ class App extends React.Component {
       description: description
     }
 
-    const url:string = settings.serverUrl + "/book/add";
+    const url:string = settings.serverUrl + "/book/add/"+this.state.userName;
     await addBook(url,dataObj);
     this.getAllBooks();
   }
+
+  setUser(userName:string){
+    this.setState(()=>{
+      return{
+        isLogged: true,
+        redirect: false,
+        userName: userName
+      }
+    })
+  }
+
+  logOutUser(){
+    this.setState(()=>{
+      return{
+        isLogged: false,
+        redirect:true,
+        userName:null
+      }
+    })
+  }
+
   //////////////////////////////////////////////////
   render() {
+    //render correct components
+    let result:any;
+    if(this.state.redirect === true){
+      result = (<Redirect to="/login" />)
+    } else {
+      result = (
+        <>
+          <Menu/>
+          <section className="bookAppWrapper">
+            <BookListMenu/>
+            <BookList/>
+          </section>
+        </>
+      )
+    }
     return (
         <bookContext.Provider value={this.state}>
           <div className="App">
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={LogIn} />
               <Route path={'/(.+)'} render={() => (
                 <Route path="/bookApp">
-                  <Menu/>
-                  <section className="bookAppWrapper">
-                    <BookListMenu/>
-                    <BookList/>
-                  </section>
+                  {result}
                 </Route>
               )}/>
             </Switch>
